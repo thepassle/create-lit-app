@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <meta name="description" content="create-lit-app">
+
+    <title>Lit App</title>
+
+    <base href="/">
+    <link rel="icon" href="favicon.ico">
+
+    <style>
+      body{
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+    <script>
+      window.process = { env: { NODE_ENV: 'production' } };
+    </script>
+
+    <script>if (!window.customElements) { document.write('<!--'); }</script>
+    <script src="./vendor/custom-elements-es5-adapter.js"></script>
+    <!--! DO NOT REMOVE THIS COMMENT, WE NEED ITS CLOSING MARKER -->
+
+  </head>
+  <body>
+    <lit-app/>
+    <script src="./vendor/babel-helpers.min.js"></script>
+    <script src="./vendor/regenerator-runtime.min.js"></script>
+    <script src="./vendor/webcomponents-loader.js"></script>
+</html>
