@@ -57,4 +57,4 @@ As easy as that! Next you can upload it to heroku/digital ocean/whatever.
 
 ## Further reading
 * [Redux](https://redux.js.org/introduction)
-* [LitHTML examples](https://github.com/LarsDenBakker/lit-html-examples) by Lars den Bakker
+* These excellent [LitHTML examples](https://github.com/LarsDenBakker/lit-html-examples) by Lars den Bakker
