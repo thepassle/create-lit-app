@@ -1,5 +1,8 @@
 # Create-lit-app
 
+Demo:
+https://create-lit-app.herokuapp.com/
+
 ![Lit App Screenshot](https://i.imgur.com/oOUk6cf.png)
 
 Create-lit-app is something I put together after struggling to set up an app for a hobby project. Clone/fork this repo if you want to get started quickly building a fullstack LitHTML app with:
