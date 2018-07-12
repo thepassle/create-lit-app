@@ -24,6 +24,10 @@ const assets = [
   {
     from: resolve('./src/logo.svg'),
     to: OUTPUT_PATH
+  },
+  {
+    from: resolve('./src/github.svg'),
+    to: OUTPUT_PATH
   }
 ];
 

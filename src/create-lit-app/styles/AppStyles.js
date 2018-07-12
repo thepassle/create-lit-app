@@ -31,6 +31,17 @@ export const AppStyles = html`
     font-size: large;
   }
 
+  .app-links {
+    margin-top: ${ SPACER * 4 }px;
+  }
+
+  .app-gh {
+    position: fixed;
+    width: ${ SPACER * 5 }px;
+    bottom: ${ SPACER * 5 }px;
+    left: ${ SPACER * 5 }px;
+  }
+
   @keyframes app-logo-spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }

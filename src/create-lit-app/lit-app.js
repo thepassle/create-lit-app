@@ -12,17 +12,13 @@ import { AppStyles } from './styles/AppStyles';
 
 class LitApp extends LitElement {
 
-	constructor() {
-		super();
-	}
-
 	_firstRendered(){
 		const router = new Router(this.shadowRoot.querySelector('#outlet'));
 
 	    router.setRoutes([
 	      {path: '/', component: 'home-page'},
 	      {path: '/books', component: 'books-demo'},
-	      {path: '/redux', component: 'redux-demo'},
+	      {path: '/redux', component: 'redux-demo'}
 	    ]);
 	}
 
@@ -34,13 +30,18 @@ class LitApp extends LitElement {
 					<img src="../logo.svg" class="app-logo" alt="logo" />
 					<h1 class="app-title">Welcome to LitHTML</h1>
 				</header>
-				<p class="app-intro">
-					To get started, edit <code>src/create-lit-app/lit-app.js</code> and save to reload.
-				</p>
-				<a href="/">Home</a>
-				<a href="/books">Books</a>
-				<a href="/redux">Redux</a>
-				<div id="outlet"/>
+
+				<div class="app-links">
+					<a href="/">Home</a>
+					<a href="/books">Books</a>
+					<a href="/redux">Redux</a>
+				</div>
+
+				<div id="outlet"></div>
+
+				<a href="https://github.com/thepassle/create-lit-app">
+					<img src="../github.svg" class="app-gh" alt />
+				</a>
 			</div>
 		`;
 	}
