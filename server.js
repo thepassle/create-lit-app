@@ -12,6 +12,10 @@ app.use('/api', routes);
 
 app.use(serveStatic(__dirname + '/dist/'));
 
+app.get('*', function(req, res) {
+  res.sendFile(__dirname + '/dist/index.html');
+});
+
 app.listen(process.env.PORT || 8000, function () {
     console.log('Node app is running on port 8000');
 });
