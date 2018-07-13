@@ -50,11 +50,11 @@ As easy as that! Next you can upload it to heroku/digital ocean/whatever.
 
 ## Credits/helpful links
 * The incredibly helpful web-padawan and his [polymer3-webpack-starter](https://github.com/web-padawan/polymer3-webpack-starter)
-* [create-react-app](https://github.com/facebook/create-react-app)
-* [Vaadin Router](https://github.com/vaadin/vaadin-router)
+* These excellent [LitHTML examples](https://github.com/LarsDenBakker/lit-html-examples) by Lars den Bakker
 * [litHTML](https://github.com/Polymer/lit-html)
+* [Vaadin Router](https://github.com/vaadin/vaadin-router)
 * [polymer PWA starter kit](https://github.com/Polymer/pwa-starter-kit)
+* [create-react-app](https://github.com/facebook/create-react-app)
 
 ## Further reading
 * [Redux](https://redux.js.org/introduction)
-* These excellent [LitHTML examples](https://github.com/LarsDenBakker/lit-html-examples) by Lars den Bakker
