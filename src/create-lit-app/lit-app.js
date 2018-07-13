@@ -7,6 +7,7 @@ import '@polymer/paper-button/paper-button';
 import './components/home-page.js';
 import './components/books-demo.js';
 import './components/redux-demo.js';
+import './components/not-found.js';
 
 import { AppStyles } from './styles/AppStyles';
 
@@ -18,7 +19,8 @@ class LitApp extends LitElement {
 	    router.setRoutes([
 	      {path: '/', component: 'home-page'},
 	      {path: '/books', component: 'books-demo'},
-	      {path: '/redux', component: 'redux-demo'}
+	      {path: '/redux', component: 'redux-demo'},
+          {path: '(.*)', component: 'not-found'}
 	    ]);
 	}
 
