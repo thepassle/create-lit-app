@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/thepassle/create-lit-app.svg?branch=master)](https://travis-ci.org/thepassle/create-lit-app)
+
 # Create-lit-app
 
 Demo:
