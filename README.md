@@ -66,3 +66,4 @@ As easy as that! Next you can upload it to heroku/digital ocean/whatever.
 
 ## Further reading
 * [Redux](https://redux.js.org/introduction)
+* [Making a fullstack app with lit](https://medium.com/@pascalschilp/making-a-fullstack-crud-app-with-lithtml-redux-express-and-webpack-fe7e5cf8b3ef)
