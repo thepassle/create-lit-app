@@ -1,0 +1,36 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>home-page</title>
+
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script src="../node_modules/wct-browser-legacy/browser.js"></script>
+
+  <!-- Import the element to test -->
+  <script type="module" src="../src/create-lit-app/components/home-page.js"></script>
+
+</head>
+<body>
+
+  <test-fixture id="basic">
+    <template>
+       <home-page></home-page>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('home-page tests', function() {
+      var home;
+
+      setup(function() {
+        home = fixture('basic');
+      });
+
+      test('homepage shows the welcome message', function() {
+        var title = home.shadowRoot.querySelector('h1').textContent;
+        assert.equal(title, "Welcome");
+      });
+    });
+  </script>
+</body>
+</html>
