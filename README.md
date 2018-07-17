@@ -37,6 +37,14 @@ Start `webpack-dev-server` on localhost `http://127.0.0.1:3000`:
 npm run start
 ```
 
+## Run tests
+
+Run tests:
+
+```sh
+npm run test
+```
+
 ## Build with webpack
 
 Run the production build:
