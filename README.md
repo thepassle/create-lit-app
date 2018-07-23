@@ -16,9 +16,7 @@ Create-lit-app is something I put together after struggling to set up an app for
 * Build with webpack
 
 
-Optionally:
-* Typescript (check out the typescript branch)
-* No-webpack (check out the no-webpack branch)
+Do you **not** want to use webpack, and just use the Polymer CLI tools? Check out [this branch](https://github.com/thepassle/create-lit-app/tree/no-webpack)
 
 I made this repo to make it easier for other people like me to get started making a LitHTML app.
 
