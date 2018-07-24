@@ -1,7 +1,6 @@
 import { LitElement, html } from '@polymer/lit-element/';
 
-import { increment } from '../../actions/count';
-import { decrement } from '../../actions/count';
+import { increment, decrement } from '../../actions/count';
 
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../../store.js';
