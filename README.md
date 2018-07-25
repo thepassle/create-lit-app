@@ -6,7 +6,7 @@
 Demo:
 https://create-lit-app.herokuapp.com/
 
-![Lit App Screenshot](https://i.imgur.com/Mo15CqV.png)
+![Lit App Screenshot](https://i.imgur.com/CaDLkto.png)
 
 ## Get Started Immediately
 
