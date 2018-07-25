@@ -29,7 +29,7 @@ class LitApp extends LitElement {
 			${AppStyles}
 			<div class="app">
 				<header class="app-header">
-					<img src="../logo.svg" class="app-logo" alt="logo" />
+					<img src="../assets/logo.svg" class="app-logo" alt="logo" />
 					<h1 class="app-title">Welcome to LitHTML</h1>
 				</header>
 
@@ -42,7 +42,7 @@ class LitApp extends LitElement {
 				<div id="outlet"></div>
 
 				<a href="https://github.com/thepassle/create-lit-app">
-					<img src="../github.svg" class="app-gh" alt />
+					<img src="../assets/github.svg" class="app-gh" alt />
 				</a>
 			</div>
 		`;

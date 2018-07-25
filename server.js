@@ -17,5 +17,5 @@ app.get('*', function(req, res) {
 });
 
 app.listen(process.env.PORT || 8000, function () {
-    console.log('Node app is running on port 8000');
+    console.log('Express server is running on port 8000');
 });

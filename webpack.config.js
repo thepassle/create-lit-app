@@ -6,7 +6,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const { InjectManifest } = require('workbox-webpack-plugin');
 
 const ENV = process.argv.find(arg => arg.includes('production'))
   ? 'production'
@@ -18,16 +17,16 @@ const webcomponentsjs = './node_modules/@webcomponents/webcomponentsjs';
 
 const assets = [
   {
-    from: resolve('./src/favicon.ico'),
-    to: OUTPUT_PATH
+    from: resolve('./src/assets/favicon.ico'),
+    to: resolve('dist/assets/')
   },
   {
-    from: resolve('./src/logo.svg'),
-    to: OUTPUT_PATH
+    from: resolve('./src/assets/logo.svg'),
+    to: resolve('dist/assets/')
   },
   {
-    from: resolve('./src/github.svg'),
-    to: OUTPUT_PATH
+    from: resolve('./src/assets/github.svg'),
+    to: resolve('dist/assets/')
   }
 ];
 
