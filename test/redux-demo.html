@@ -1,0 +1,52 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>redux-demo</title>
+
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script src="../node_modules/wct-browser-legacy/browser.js"></script>
+  <script> window.process = { env: { NODE_ENV: 'production' } }; </script>
+  
+  <!-- Import the element to test -->
+  <script type="module" src="../src/create-lit-app/components/redux-demo.js"></script>
+
+</head>
+<body>
+
+  <test-fixture id="basic">
+    <template>
+       <redux-demo></redux-demo>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('redux-demo tests', function() {
+      var element;
+
+      setup(function() {
+        element = fixture('basic');
+      });
+
+      test('homepage shows the welcome message', function(done) {
+        var incrementButton = element.shadowRoot.querySelectorAll('button')[0];
+        var decrementButton = element.shadowRoot.querySelectorAll('button')[1];
+        
+        incrementButton.click();
+        
+        flush(() => {
+          var total = element.shadowRoot.querySelector('p').textContent;
+          assert.equal(total, "count: 1");
+        
+          decrementButton.click();
+
+          flush(() => {
+            var total = element.shadowRoot.querySelector('p').textContent;
+            assert.equal(total, "count: 0");
+            done();
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

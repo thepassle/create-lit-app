@@ -86,7 +86,6 @@
     "greeting": "echo \"\n\nRun: 'node server.js' to see your production build.\nRun: 'npm start' for development\n\n\\033[34m+------------------+\n|  create-lit-app  |\n+------------------+\n\n** Happy hacking! **\n\n\"",
     "postinstall": "node utils/generate-helpers.js && npm run build && npm run --silent greeting",
     "start": "nodemon server.js | webpack-dev-server --env development",
-    "test": "polymer test",
-    "test:chrome": "polymer test --local chrome"
+    "test": "polymer test --local chrome"
   }
 }
