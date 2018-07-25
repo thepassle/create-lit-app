@@ -16,12 +16,12 @@ class LitApp extends LitElement {
 	_firstRendered(){
 		const router = new Router(this.shadowRoot.querySelector('#outlet'));
 
-	    router.setRoutes([
-	      {path: '/', component: 'home-page'},
-	      {path: '/books', component: 'books-demo'},
-	      {path: '/redux', component: 'redux-demo'},
-          {path: '(.*)', component: 'not-found'}
-	    ]);
+		router.setRoutes([
+			{path: '/', component: 'home-page'},
+			{path: '/books', component: 'books-demo'},
+			{path: '/redux', component: 'redux-demo'},
+			{path: '(.*)', component: 'not-found'}
+		]);
 	}
 
 	_render() {
