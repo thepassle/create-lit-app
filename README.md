@@ -8,7 +8,13 @@ https://create-lit-app.herokuapp.com/
 
 ![Lit App Screenshot](https://i.imgur.com/Mo15CqV.png)
 
-Create-lit-app is something I put together after struggling to set up an app for a hobby project. Clone/fork this repo if you want to get started quickly building a fullstack LitHTML app with:
+## Get Started Immediately
+
+You don’t need to install or configure tools like Webpack or Babel.
+They are preconfigured so that you can focus on the code.
+
+Just clone the project, and you’re good to go. 
+Clone/fork this repo if you want to get started quickly building a fullstack LitHTML app with:
 
 * Routing
 * Express api
@@ -17,8 +23,6 @@ Create-lit-app is something I put together after struggling to set up an app for
 
 
 Do you **not** want to use webpack, and just use the Polymer CLI tools? Check out [this branch](https://github.com/thepassle/create-lit-app/tree/no-webpack)
-
-I made this repo to make it easier for other people like me to get started making a LitHTML app.
 
 ## Quickstart
 
@@ -61,6 +65,10 @@ node server.js
 ```
 
 As easy as that! Next you can upload it to heroku/digital ocean/whatever.
+
+## Contributing
+
+We'd love to have your helping hand on create-lit-app! Feel free to create a pull request if you want to help out.
 
 ## Credits/helpful links
 * The incredibly helpful web-padawan and his [polymer3-webpack-starter](https://github.com/web-padawan/polymer3-webpack-starter)
