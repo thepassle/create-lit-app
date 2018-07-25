@@ -80,7 +80,7 @@
   },
   "scripts": {
     "build": "webpack --env production",
-    "lint": "eslint src/app/*.js src/views/*.js src/styles/*.js",
+    "lint": "eslint ./src/**/*.js --quiet",
     "greeting": "echo \"\n\nRun: 'node server.js' to see your production build.\nRun: 'npm start' for development\n\n\\033[34m+------------------+\n|  create-lit-app  |\n+------------------+\n\n** Happy hacking! **\n\n\"",
     "postinstall": "node utils/generate-helpers.js && npm run build && npm run --silent greeting",
     "start": "nodemon server.js | webpack-dev-server --env development",
