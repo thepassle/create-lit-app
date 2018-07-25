@@ -5,7 +5,7 @@ class HomePage extends LitElement {
 		return html`
 			<h1>Welcome</h1>
 			<p class="app-intro">
-				To get started, edit <code>src/create-lit-app/lit-app.js</code> and save to reload.
+				To get started, edit <code>src/lit-app.js</code> and save to reload.
 			</p>
 		`;
 	}

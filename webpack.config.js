@@ -61,7 +61,7 @@ const helpers = [
 
 const commonConfig = merge([
   {
-    entry: './src/index.js',
+    entry: './src/lit-app.js',
     output: {
       path: OUTPUT_PATH,
       filename: '[name].[chunkhash:8].js'
