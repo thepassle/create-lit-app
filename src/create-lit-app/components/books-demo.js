@@ -4,7 +4,7 @@ class BooksDemo extends LitElement {
 	static get properties() {
 		return {
 			books: Array
-		}
+		};
 	}
 
 	constructor() {
@@ -14,12 +14,12 @@ class BooksDemo extends LitElement {
 
 	_firstRendered(){
 		fetch('/api/books')
-		.then((res) => {
-			return res.json();
-		})
-		.then((res) => {
-			this.books = res;
-		});
+			.then((res) => {
+				return res.json();
+			})
+			.then((res) => {
+				this.books = res;
+			});
 	}
 
 	_render({books}) {

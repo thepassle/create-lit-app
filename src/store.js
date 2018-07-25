@@ -12,7 +12,7 @@ import counter from './reducers/count.js';
 const compose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || origCompose;
 
 export const store = createStore(
-  (state, action) => state,
+  (state, action) => state, // eslint-disable-line no-unused-vars
   compose(lazyReducerEnhancer(combineReducers), applyMiddleware(thunk))
 );
 
