@@ -45,6 +45,14 @@ const polyfills = [
     from: resolve(`${webcomponentsjs}/custom-elements-es5-adapter.js`),
     to: join(OUTPUT_PATH, 'vendor'),
     flatten: true
+  },
+  {
+    from: resolve('./node_modules/whatwg-fetch/fetch.js'),
+    to: join(OUTPUT_PATH, 'vendor')
+  },
+  {
+    from: resolve('./node_modules/promise-polyfill/dist/polyfill.min.js'),
+    to: join(OUTPUT_PATH, 'vendor')
   }
 ];
 
