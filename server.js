@@ -1,16 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const serveStatic = require('express-static-gzip');
-
 const routes = require('./routes/api');
-
 const app = express();
 
 app.use(bodyParser.json());
-
+app.use(express.static('dist'));
 app.use('/api', routes);
-
-app.use(serveStatic(__dirname + '/dist/'));
 
 app.get('*', function(req, res) {
   res.sendFile(__dirname + '/dist/index.html');
