@@ -10,11 +10,12 @@ https://create-lit-app.herokuapp.com/
 
 ## Get Started Immediately
 
+![Lit Cli](http://thepassle.nl/SGTEST/cla.gif)
+
 You don’t need to install or configure tools like Webpack or Babel.
 They are preconfigured so that you can focus on the code.
 
-Just clone the project, and you’re good to go. 
-Clone/fork this repo if you want to get started quickly building a fullstack LitHTML app with:
+Clone/fork this repo or install the CLI if you want to get started quickly building a fullstack LitHTML app with:
 
 * Routing
 * Express api
@@ -27,16 +28,17 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 ## Quickstart
 
 ```sh
-git clone https://github.com/thepassle/create-lit-app.git
-cd create-lit-app
-npm i
-npm run start
+npm install --global create-lit-app
+create-lit-app my-app
+
+cd my-app
+npm start
 ```
 
 ## Install dependencies
 
 ```sh
-npm i
+npm install
 ```
 
 ## Start the development server
