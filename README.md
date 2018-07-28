@@ -35,12 +35,6 @@ cd my-app
 npm start
 ```
 
-## Install dependencies
-
-```sh
-npm install
-```
-
 ## Start the development server
 
 Start `webpack-dev-server` on localhost `http://127.0.0.1:3000`:
