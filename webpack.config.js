@@ -88,9 +88,6 @@ const commonConfig = merge([
                 cacheDirectory: true,
                 envName: ENV
               }
-            },
-            {
-              loader: 'uglify-template-string-loader'
             }
           ]
         }
