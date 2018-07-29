@@ -66,6 +66,7 @@
     "eslint-config-vaadin": "^0.2.5",
     "eslint-plugin-import": "^2.13.0",
     "html-webpack-plugin": "^4.0.0-alpha",
+    "nodemon": "^1.18.3",
     "regenerator-runtime": "^0.12.0",
     "uglify-template-string-loader": "^1.1.0",
     "wct-browser-legacy": "^1.0.1",
