@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/thepassle/create-lit-app.svg?branch=master)](https://travis-ci.org/thepassle/create-lit-app) [![Mentioned in Awesome lit-html>](https://awesome.re/mentioned-badge.svg)](https://github.com/web-padawan/awesome-lit-html)[![Made with create-lit-app](https://img.shields.io/badge/built%20with-create--lit--app-blue.svg)]
+[![Build Status](https://travis-ci.org/thepassle/create-lit-app.svg?branch=master)](https://travis-ci.org/thepassle/create-lit-app) [![Mentioned in Awesome lit-html>](https://awesome.re/mentioned-badge.svg)](https://github.com/web-padawan/awesome-lit-html) [![Made with create-lit-app](https://img.shields.io/badge/built%20with-create--lit--app-blue.svg)
 
 
 # Create-lit-app
