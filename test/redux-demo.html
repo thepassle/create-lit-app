@@ -28,21 +28,23 @@
       });
 
       test('increasing and decreasing the counter works', function(done) {
-        var incrementButton = element.shadowRoot.querySelectorAll('button')[0];
-        var decrementButton = element.shadowRoot.querySelectorAll('button')[1];
-        
-        incrementButton.click();
-        
         flush(() => {
-          var total = element.shadowRoot.querySelector('p').textContent;
-          assert.equal(total, "count: 1");
-        
-          decrementButton.click();
-
+          var incrementButton = element.shadowRoot.querySelectorAll('button')[0];
+          var decrementButton = element.shadowRoot.querySelectorAll('button')[1];
+          
+          incrementButton.click();
+          
           flush(() => {
             var total = element.shadowRoot.querySelector('p').textContent;
-            assert.equal(total, "count: 0");
-            done();
+            assert.equal(total, "count: 1");
+          
+            decrementButton.click();
+
+            flush(() => {
+              var total = element.shadowRoot.querySelector('p').textContent;
+              assert.equal(total, "count: 0");
+              done();
+            });
           });
         });
       });

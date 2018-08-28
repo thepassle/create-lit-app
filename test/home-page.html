@@ -26,9 +26,12 @@
         home = fixture('basic');
       });
 
-      test('homepage shows the welcome message', function() {
-        var title = home.shadowRoot.querySelector('h1').textContent;
-        assert.equal(title, "Welcome");
+      test('homepage shows the welcome message', function(done) {
+        flush(() => {
+          var title = home.shadowRoot.querySelector('h1').textContent;
+          assert.equal(title, "Welcome");
+          done();
+        });
       });
     });
   </script>
