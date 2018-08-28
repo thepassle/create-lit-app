@@ -1,7 +1,7 @@
 import { LitElement, html } from '@polymer/lit-element/';
 
 class HomePage extends LitElement {
-	_render() {
+	render() {
 		return html`
 			<h1>Welcome</h1>
 			<p class="app-intro">

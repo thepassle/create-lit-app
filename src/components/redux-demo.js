@@ -12,12 +12,14 @@ class ReduxDemo extends connect(store)(LitElement) {
 		};
 	}
 
-	_render({count}){
+	render(){
+		let { count } = this;
+
 		return html`
 			  <h1>Redux demo</h1>
 			  <p>count: ${count}</p>
-			  <button on-click="${() => store.dispatch(increment())}">inc</button>
-			  <button on-click="${() => store.dispatch(decrement())}">dec</button>
+			  <button @click="${() => store.dispatch(increment())}">inc</button>
+			  <button @click="${() => store.dispatch(decrement())}">dec</button>
 		`;
 	}
 

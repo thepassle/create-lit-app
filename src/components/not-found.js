@@ -1,7 +1,7 @@
 import { LitElement, html } from '@polymer/lit-element/';
 
 class NotFound extends LitElement {
-	_render() {
+	render() {
 		return html`
 			<h1>404</h1>
 			<p class="app-intro">

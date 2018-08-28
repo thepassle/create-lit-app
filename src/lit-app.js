@@ -13,7 +13,7 @@ import { AppStyles } from './styles/AppStyles';
 
 class LitApp extends LitElement {
 
-	_firstRendered(){
+	firstRendered(){
 		const router = new Router(this.shadowRoot.querySelector('#outlet'));
 
 		router.setRoutes([
@@ -24,7 +24,7 @@ class LitApp extends LitElement {
 		]);
 	}
 
-	_render() {
+	render() {
 		return html`
 			${AppStyles}
 			<div class="app">

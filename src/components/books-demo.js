@@ -12,7 +12,7 @@ class BooksDemo extends LitElement {
 		this.books = [];
 	}
 
-	_firstRendered(){
+	firstRendered(){
 		fetch('/api/books')
 			.then((res) => {
 				return res.json();
@@ -22,7 +22,9 @@ class BooksDemo extends LitElement {
 			});
 	}
 
-	_render({books}) {
+	render() {
+		let { books } = this;
+		
 		return html`
 			<h1>Books demo</h1>
 
