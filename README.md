@@ -174,15 +174,15 @@ import { LitElement, html } from '@polymer/lit-element/';
 import 'book-list-item.js';
 
 class BookList extends LitElement {
-  static get properties() {
+    static get properties() {
         return {
             books: Array
         };
     }
 
     constructor() {
-    super();
-    this.books = [{ author: 'G.R.R. Martin', title: 'A Game of Thrones' }, { author: 'Tolkien', title: 'Lord of the Rings'}];
+        super();
+        this.books = [{ author: 'G.R.R. Martin', title: 'A Game of Thrones' }, { author: 'Tolkien', title: 'Lord of the Rings'}];
     }
 
   render() {    
@@ -207,11 +207,11 @@ customElements.define('book-list', BookList);
 
 ```js
 class BookListItem extends LitElement {
-  static get properties() {
-        return {
-            book: Object
-        };
-    }
+   static get properties() {
+     return {
+       book: Object
+     };
+   }
 
   render() {    
     const { book } = this;
@@ -258,9 +258,9 @@ import { LitElement, html } from '@polymer/lit-element/';
 
 class ConditionalDemo extends LitElement {
   static get properties() {
-        return {
-            myBool: Boolean
-        };
+      return {
+        myBool: Boolean
+      };
     }
 
   render() {    
@@ -292,15 +292,15 @@ customElements.define('conditional-demo', ConditionalDemo);
 import { LitElement, html } from '@polymer/lit-element/';
 
 class DefaultValues extends LitElement {
-  static get properties() {
-        return {
-            book: Object
-        };
+    static get properties() {
+      return {
+        book: Object
+      };
     }
 
     constructor() {
-    super();
-    this.book = { author: 'G.R.R. Martin', title: 'A Game of Thrones' };
+      super();
+      this.book = { author: 'G.R.R. Martin', title: 'A Game of Thrones' };
     }
 
   render() {    
@@ -358,10 +358,10 @@ customElements.define('array-demo', ArrayDemo);
 
 ```js
 class AttributesDemo extends LitElement {
-  static get properties() {
-        return {
-            color: String
-        };
+    static get properties() {
+      return {
+        color: String
+      };
     }
 
   render() {  
