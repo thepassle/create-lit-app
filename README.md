@@ -536,7 +536,7 @@ customElements.define('book-list', BookList);
 ```
 
 
-`add-book.js`:
+`add-book-component.js`:
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
