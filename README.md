@@ -539,24 +539,20 @@ customElements.define('book-list', BookList);
 `add-book.js`:
 
 ```js
-class AddBookButton extends LitElement {
-  static get properties() {
-    return {
-      newBook: Object
-    };
-  }
+import { LitElement, html } from '@polymer/lit-element/';
 
-  constructor() {
-    super();
-    this.newBook = { author: 'J.R. Rowling', title: 'Harry Potter' };
-  }
-
+class AddBook extends LitElement {
   _addBook() {
-    this.dispatchEvent(new CustomEvent('add-book', { detail: this.newBook }));
+    const author = this.shadowRoot.querySelector('#author').value;
+    const title = this.shadowRoot.querySelector('#title').value;
+    this.dispatchEvent(new CustomEvent('add-book', { detail: { author, title } }));
   }
 
   render() {	
     return html`
+      author: <input id="author"></input>
+      title: <input id="title"></input>
+      
       <button @click=${() => this._addBook()}>
         add a book!
       </button>
@@ -564,7 +560,7 @@ class AddBookButton extends LitElement {
   }
 }
 
-customElements.define('add-book', AddBookButton);
+customElements.define('add-book', AddBook);
 ```
 
 
