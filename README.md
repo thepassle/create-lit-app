@@ -388,6 +388,7 @@ import { AppStyles } from 'styles.js';
 class StylesDemo extends LitElement {
   render() {    
     return html`
+        ${AppStyles}
         <h1 class="title">
           Hello universe!
         </h1>
