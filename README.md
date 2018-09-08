@@ -497,7 +497,7 @@ customElements.define('installing-components-demo', InstallingComponentsDemo);
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
-import 'add-book.js';
+import 'add-book-component.js';
 
 class BookList extends LitElement {
   static get properties() {
@@ -511,7 +511,7 @@ class BookList extends LitElement {
     this.books = [{ author: 'G.R.R. Martin', title: 'A Game of Thrones' }, { author: 'Tolkien', title: 'Lord of the Rings'}];
   }
 
-  _appendBook(event) {
+  _addBook(event) {
     this.books = [...this.books, event.detail];
   }
 
@@ -526,7 +526,7 @@ class BookList extends LitElement {
             <p>${book.author}</p>
           `;
         })}
-        <add-book @add-book=${(event) => this._appendBook(event)}></add-book>
+        <add-book-component @book-added=${(event) => this._addBook(event)}></add-book-component>
       </div>
     `;
   }
@@ -541,11 +541,11 @@ customElements.define('book-list', BookList);
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
 
-class AddBook extends LitElement {
-  _addBook() {
+class AddBookComponent extends LitElement {
+  _submitBook() {
     const author = this.shadowRoot.querySelector('#author').value;
     const title = this.shadowRoot.querySelector('#title').value;
-    this.dispatchEvent(new CustomEvent('add-book', { detail: { author, title } }));
+    this.dispatchEvent(new CustomEvent('book-added', { detail: { author, title } }));
   }
 
   render() {	
@@ -553,14 +553,14 @@ class AddBook extends LitElement {
       author: <input id="author"></input>
       title: <input id="title"></input>
       
-      <button @click=${() => this._addBook()}>
+      <button @click=${() => this._submitBook()}>
         add a book!
       </button>
     `;
   }
 }
 
-customElements.define('add-book', AddBook);
+customElements.define('add-book-component', AddBookComponent);
 ```
 
 
