@@ -169,7 +169,7 @@ Your app is ready to be deployed!
 
 `book-list.js`:
 
-```
+```js
 import { LitElement, html } from '@polymer/lit-element/';
 import 'book-list-item.js';
 
@@ -205,7 +205,7 @@ customElements.define('book-list', BookList);
 
 `book-list-item.js`:
 
-```
+```js
 class BookListItem extends LitElement {
 	static get properties() {
         return {
@@ -233,7 +233,7 @@ customElements.define('book-list-item', BookListItem);
 ## Event handlers
 
 
-```
+```js
 import { LitElement, html } from '@polymer/lit-element/';
 
 class EventHandlerDemo extends LitElement {
@@ -253,7 +253,7 @@ customElements.define('event-handler-demo', EventHandlerDemo);
 
 ## Conditional rendering
 
-```
+```js
 import { LitElement, html } from '@polymer/lit-element/';
 
 class ConditionalDemo extends LitElement {
@@ -288,7 +288,7 @@ customElements.define('conditional-demo', ConditionalDemo);
 
 ## Setting default values
 
-```
+```js
 import { LitElement, html } from '@polymer/lit-element/';
 
 class DefaultValues extends LitElement {
@@ -322,7 +322,7 @@ customElements.define('default-values-demo', DefaultValues);
 
 ## Arrays
 
-```
+```js
 import { LitElement, html } from '@polymer/lit-element/';
 
 class ArrayDemo extends LitElement {
@@ -356,7 +356,7 @@ customElements.define('array-demo', ArrayDemo);
 
 ## Attributes
 
-```
+```js
 class AttributesDemo extends LitElement {
 	static get properties() {
         return {
@@ -381,7 +381,7 @@ customElements.define('attributes-demo', AttributesDemo);
 
 `styles-demo.js`:
 
-```
+```js
 import { LitElement, html } from '@polymer/lit-element/';
 import { AppStyles } from 'styles.js';
 
@@ -400,7 +400,7 @@ customElements.define('styles-demo', StylesDemo);
 
 `styles.js`:
 
-```
+```js
 import { html } from '@polymer/lit-element';
 
 export const AppStyles = html`
@@ -414,7 +414,7 @@ export const AppStyles = html`
 
 Alternatively, you can write styles inside your component.
 
-```
+```js
 import { LitElement, html } from '@polymer/lit-element/';
 
 class StylesDemo extends LitElement {
@@ -439,7 +439,7 @@ customElements.define('styles-demo', StylesDemo);
 ## Using directives
 
 
-```
+```js
 import { LitElement, html } from '@polymer/lit-element/';
 import { until } from 'lit-html';
 
@@ -464,7 +464,7 @@ Run `npm i --save @polymer/paper-button`
 
 Import and use:
 
-```
+```js
 import { LitElement, html } from '@polymer/lit-element/';
 import '@polymer/paper-button/paper-button';
 
