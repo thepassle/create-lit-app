@@ -495,7 +495,7 @@ customElements.define('installing-components-demo', InstallingComponentsDemo);
 
 `book-list.js`:
 
-```
+```js
 import { LitElement, html } from '@polymer/lit-element/';
 import 'book-list-item.js';
 import 'add-book.js';
@@ -539,7 +539,7 @@ customElements.define('book-list', BookList);
 
 `book-list-item.js`:
 
-```
+```js
 import { LitElement, html } from '@polymer/lit-element/';
 
 class BookListItem extends LitElement {
@@ -567,7 +567,7 @@ customElements.define('book-list-item', BookListItem);
 
 `add-book.js`:
 
-```
+```js
 import { LitElement, html } from '@polymer/lit-element/';
 
 class AddBookButton extends LitElement {
