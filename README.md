@@ -50,6 +50,7 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 	- [Adding styles](#adding-styles)
 	- [Using directives](#using-directives)
 	- [Installing components](#installing-components)
+	- [Upwards data flow](#upwards-data-flow)
 - [Contributing](#contributing)
 - [Credits](#credits)
 - [Further reading](#further-reading)
@@ -489,6 +490,114 @@ class InstallingComponentsDemo extends LitElement {
 
 customElements.define('installing-components-demo', InstallingComponentsDemo);
 ```
+
+## Upwards data flow
+
+`book-list.js`:
+
+```
+import { LitElement, html } from '@polymer/lit-element/';
+import 'book-list-item.js';
+import 'add-book.js';
+
+class BookList extends LitElement {
+  static get properties() {
+    return {
+      books: Array
+    };
+  }
+
+  constructor() {
+    super();
+    this.books = [{ author: 'G.R.R. Martin', title: 'A Game of Thrones' }, { author: 'Tolkien', title: 'Lord of the Rings'}];
+  }
+
+  firstRendered() {
+    this.shadowRoot.querySelector('add-book').addEventListener('add-book', (event) => {
+      this.books = [...this.books, event.detail];
+    });
+  }
+
+  render() {		
+    const { books } = this;
+
+    return html`
+      <div>
+        ${books.map((book) => {
+          return html`
+            <book-list-item .book=${book}></book-list-item>
+          `;
+        })}
+        <add-book></add-book>
+      </div>
+    `;
+  }
+}
+
+customElements.define('book-list', BookList);
+```
+
+`book-list-item.js`:
+
+```
+import { LitElement, html } from '@polymer/lit-element/';
+
+class BookListItem extends LitElement {
+  static get properties() {
+    return {
+      book: Object
+    };
+  }
+
+  render() {	
+    const { book } = this;
+    return html`
+      <h1>
+        ${book.title}
+      </h1>
+      <p>
+        ${book.author}
+      </p>
+    `;
+  }
+}
+
+customElements.define('book-list-item', BookListItem);
+```
+
+`add-book.js`:
+
+```
+import { LitElement, html } from '@polymer/lit-element/';
+
+class AddBookButton extends LitElement {
+  static get properties() {
+    return {
+      newBook: Object
+    };
+  }
+
+  constructor() {
+    super();
+    this.newBook = { author: 'J.R. Rowling', title: 'Harry Potter' };
+  }
+
+  _addBook() {
+    this.dispatchEvent(new CustomEvent('add-book', { detail: this.newBook }));
+  }
+
+  render() {	
+    return html`
+      <button @click=${() => this._addBook()}>
+        add a book!
+      </button>
+    `;
+  }
+}
+
+customElements.define('add-book', AddBookButton);
+```
+
 
 ## Contributing
 
