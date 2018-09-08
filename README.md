@@ -29,6 +29,31 @@ Clone/fork this repo or install the CLI if you want to get started quickly build
 
 Do you **not** want to use webpack, and just use the Polymer CLI tools? Check out [this branch](https://github.com/thepassle/create-lit-app/tree/no-webpack)
 
+
+
+
+## Table of Contents
+
+- [Quick start](#quick-start)
+- [Folder Structure](#folder-structure)
+- [Available Scripts](#available-scripts)
+  - [npm start](#npm-start)
+  - [npm test](#npm-test)
+  - [npm run build](#npm-run-build)
+- [Usage](#usage)
+	- [Passing props](#passing-props)
+	- [Event handlers](#event-handlers)
+	- [Conditional rendering](#conditional-rendering)
+	- [Setting default values](#setting-default-values)
+	- [Arrays](#arrays)
+	- [Attributes](#attributes)
+	- [Adding styles](#adding-styles)
+	- [Using directives](#using-directives)
+	- [Installing components](#installing-components)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [Further reading](#further-reading)
+
 ## Quickstart
 
 ```sh
@@ -65,28 +90,6 @@ node server.js
 ```
 
 As easy as that! Next you can upload it to heroku/digital ocean/whatever.
-
-
-## Table of Contents
-
-- [Folder Structure](#folder-structure)
-- [Available Scripts](#available-scripts)
-  - [npm start](#npm-start)
-  - [npm test](#npm-test)
-  - [npm run build](#npm-run-build)
-- [Usage](#usage)
-	- [Passing props](#passing-props)
-	- [Event handlers](#event-handlers)
-	- [Conditional rendering](#conditional-rendering)
-	- [Setting default values](#setting-default-values)
-	- [Arrays](#arrays)
-	- [Attributes](#attributes)
-	- [Adding styles](#adding-styles)
-	- [Using directives](#using-directives)
-	- [Installing components](#installing-components)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [Further reading](#further-reading)
 
 ## Folder Structure
 
@@ -174,28 +177,28 @@ import { LitElement, html } from '@polymer/lit-element/';
 import 'book-list-item.js';
 
 class BookList extends LitElement {
-    static get properties() {
-        return {
-            books: Array
-        };
-    }
+  static get properties() {
+    return {
+      books: Array
+    };
+  }
 
-    constructor() {
-        super();
-        this.books = [{ author: 'G.R.R. Martin', title: 'A Game of Thrones' }, { author: 'Tolkien', title: 'Lord of the Rings'}];
-    }
+  constructor() {
+    super();
+    this.books = [{ author: 'G.R.R. Martin', title: 'A Game of Thrones' }, { author: 'Tolkien', title: 'Lord of the Rings'}];
+  }
 
   render() {    
     const { books } = this;
 
     return html`
-        <div>
-          ${books.map((book) => {
-            return html`
-              <book-list-item .book=${book}></book-list-item>
-            `;
-          })}
-        </div>
+      <div>
+        ${books.map((book) => {
+          return html`
+            <book-list-item .book=${book}></book-list-item>
+          `;
+        })}
+      </div>
     `;
   }
 }
@@ -207,11 +210,11 @@ customElements.define('book-list', BookList);
 
 ```js
 class BookListItem extends LitElement {
-   static get properties() {
-     return {
-       book: Object
-     };
-   }
+  static get properties() {
+    return {
+      book: Object
+    };
+  }
 
   render() {    
     const { book } = this;
@@ -243,7 +246,7 @@ class EventHandlerDemo extends LitElement {
 
   render() {    
     return html`
-        <button @click="${(e) => this._clickHandler(e)}"></button>
+      <button @click="${(e) => this._clickHandler(e)}"></button>
     `;
   }
 }
@@ -258,26 +261,26 @@ import { LitElement, html } from '@polymer/lit-element/';
 
 class ConditionalDemo extends LitElement {
   static get properties() {
-      return {
-        myBool: Boolean
-      };
-    }
+    return {
+      myBool: Boolean
+    };
+  }
 
   render() {    
     const { myBool } = this;
 
     return html`
-        <div>
-          ${myBool ? 'foo' : 'bar'}
-        </div>
+      <div>
+        ${myBool ? 'foo' : 'bar'}
+      </div>
 
-        // or return some html
-        <div>
-          ${myBool 
-            ? html`<h1>foo</h1>`
-            : html`<h1>bar</h1>`
-          }
-        </div>
+      // or return some html
+      <div>
+        ${myBool 
+          ? html`<h1>foo</h1>`
+          : html`<h1>bar</h1>`
+        }
+      </div>
     `;
   }
 }
@@ -292,27 +295,27 @@ customElements.define('conditional-demo', ConditionalDemo);
 import { LitElement, html } from '@polymer/lit-element/';
 
 class DefaultValues extends LitElement {
-    static get properties() {
-      return {
-        book: Object
-      };
-    }
+  static get properties() {
+    return {
+      book: Object
+    };
+  }
 
-    constructor() {
-      super();
-      this.book = { author: 'G.R.R. Martin', title: 'A Game of Thrones' };
-    }
+  constructor() {
+    super();
+    this.book = { author: 'G.R.R. Martin', title: 'A Game of Thrones' };
+  }
 
   render() {    
     const { book } = this;
 
     return html`
-        <h1>
-          ${book.author}
-        </h1>
-        <p>
-          ${book.title}
-        </p>
+       <h1>
+         ${book.author}
+       </h1>
+       <p>
+         ${book.title}
+       </p>
     `;
   }
 }
@@ -358,11 +361,16 @@ customElements.define('array-demo', ArrayDemo);
 
 ```js
 class AttributesDemo extends LitElement {
-    static get properties() {
-      return {
-        color: String
-      };
-    }
+  static get properties() {
+    return {
+      color: String
+    };
+  }
+    
+  constructor() {
+    super();
+    this.color = "red";
+  }
 
   render() {  
     const { color } = this;
@@ -388,10 +396,10 @@ import { AppStyles } from 'styles.js';
 class StylesDemo extends LitElement {
   render() {    
     return html`
-        ${AppStyles}
-        <h1 class="title">
-          Hello universe!
-        </h1>
+       ${AppStyles}
+       <h1 class="title">
+         Hello universe!
+       </h1>
     `;
   }
 }
