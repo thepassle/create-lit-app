@@ -497,7 +497,6 @@ customElements.define('installing-components-demo', InstallingComponentsDemo);
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
-import 'book-list-item.js';
 import 'add-book.js';
 
 class BookList extends LitElement {
@@ -512,10 +511,8 @@ class BookList extends LitElement {
     this.books = [{ author: 'G.R.R. Martin', title: 'A Game of Thrones' }, { author: 'Tolkien', title: 'Lord of the Rings'}];
   }
 
-  firstRendered() {
-    this.shadowRoot.querySelector('add-book').addEventListener('add-book', (event) => {
-      this.books = [...this.books, event.detail];
-    });
+  _appendBook(event) {
+    this.books = [...this.books, event.detail];
   }
 
   render() {		
@@ -525,10 +522,11 @@ class BookList extends LitElement {
       <div>
         ${books.map((book) => {
           return html`
-            <book-list-item .book=${book}></book-list-item>
+            <h1>${book.title}</h1>
+            <p>${book.author}</p>
           `;
         })}
-        <add-book></add-book>
+        <add-book @add-book=${(event) => this._appendBook(event)}></add-book>
       </div>
     `;
   }
@@ -537,39 +535,10 @@ class BookList extends LitElement {
 customElements.define('book-list', BookList);
 ```
 
-`book-list-item.js`:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class BookListItem extends LitElement {
-  static get properties() {
-    return {
-      book: Object
-    };
-  }
-
-  render() {	
-    const { book } = this;
-    return html`
-      <h1>
-        ${book.title}
-      </h1>
-      <p>
-        ${book.author}
-      </p>
-    `;
-  }
-}
-
-customElements.define('book-list-item', BookListItem);
-```
 
 `add-book.js`:
 
 ```js
-import { LitElement, html } from '@polymer/lit-element/';
-
 class AddBookButton extends LitElement {
   static get properties() {
     return {
