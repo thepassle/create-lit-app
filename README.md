@@ -174,30 +174,30 @@ import { LitElement, html } from '@polymer/lit-element/';
 import 'book-list-item.js';
 
 class BookList extends LitElement {
-	static get properties() {
+  static get properties() {
         return {
             books: Array
         };
     }
 
     constructor() {
-		super();
-		this.books = [{ author: 'G.R.R. Martin', title: 'A Game of Thrones' }, { author: 'Tolkien', title: 'Lord of the Rings'}];
+    super();
+    this.books = [{ author: 'G.R.R. Martin', title: 'A Game of Thrones' }, { author: 'Tolkien', title: 'Lord of the Rings'}];
     }
 
-	render() {		
-		const { books } = this;
+  render() {    
+    const { books } = this;
 
-		return html`
-				<div>
-					${books.map((book) => {
-						return html`
-							<book-list-item .book=${book}></book-list-item>
-						`;
-					})}
-				</div>
-		`;
-	}
+    return html`
+        <div>
+          ${books.map((book) => {
+            return html`
+              <book-list-item .book=${book}></book-list-item>
+            `;
+          })}
+        </div>
+    `;
+  }
 }
 
 customElements.define('book-list', BookList);
@@ -207,24 +207,24 @@ customElements.define('book-list', BookList);
 
 ```js
 class BookListItem extends LitElement {
-	static get properties() {
+  static get properties() {
         return {
             book: Object
         };
     }
 
-	render() {		
-		const { book } = this;
+  render() {    
+    const { book } = this;
 
-		return html`
-			<h1>
-				${book.author}
-			</h1>
-			<p>
-				${book.title}
-			</p>
-		`;
-	}
+    return html`
+      <h1>
+        ${book.author}
+      </h1>
+      <p>
+        ${book.title}
+      </p>
+    `;
+  }
 }
 
 customElements.define('book-list-item', BookListItem);
@@ -237,15 +237,15 @@ customElements.define('book-list-item', BookListItem);
 import { LitElement, html } from '@polymer/lit-element/';
 
 class EventHandlerDemo extends LitElement {
-	_clickHandler(e) {
-		console.log(e);
-	}
+  _clickHandler(e) {
+    console.log(e);
+  }
 
-	render() {		
-		return html`
-				<button @click="${(e) => this._clickHandler(e)}"></button>
-		`;
-	}
+  render() {    
+    return html`
+        <button @click="${(e) => this._clickHandler(e)}"></button>
+    `;
+  }
 }
 
 customElements.define('event-handler-demo', EventHandlerDemo);
@@ -257,29 +257,29 @@ customElements.define('event-handler-demo', EventHandlerDemo);
 import { LitElement, html } from '@polymer/lit-element/';
 
 class ConditionalDemo extends LitElement {
-	static get properties() {
+  static get properties() {
         return {
             myBool: Boolean
         };
     }
 
-	render() {		
-		const { myBool } = this;
+  render() {    
+    const { myBool } = this;
 
-		return html`
-				<div>
-					${myBool ? 'foo' : 'bar'}
-				</div>
+    return html`
+        <div>
+          ${myBool ? 'foo' : 'bar'}
+        </div>
 
-				// or return some html
-				<div>
-					${myBool 
-						? html`<h1>foo</h1>`
-						: html`<h1>bar</h1>`
-					}
-				</div>
-		`;
-	}
+        // or return some html
+        <div>
+          ${myBool 
+            ? html`<h1>foo</h1>`
+            : html`<h1>bar</h1>`
+          }
+        </div>
+    `;
+  }
 }
 
 customElements.define('conditional-demo', ConditionalDemo);
@@ -292,29 +292,29 @@ customElements.define('conditional-demo', ConditionalDemo);
 import { LitElement, html } from '@polymer/lit-element/';
 
 class DefaultValues extends LitElement {
-	static get properties() {
+  static get properties() {
         return {
             book: Object
         };
     }
 
     constructor() {
-		super();
-		this.book = { author: 'G.R.R. Martin', title: 'A Game of Thrones' };
+    super();
+    this.book = { author: 'G.R.R. Martin', title: 'A Game of Thrones' };
     }
 
-	render() {		
-		const { book } = this;
+  render() {    
+    const { book } = this;
 
-		return html`
-				<h1>
-					${book.author}
-				</h1>
-				<p>
-					${book.title}
-				</p>
-		`;
-	}
+    return html`
+        <h1>
+          ${book.author}
+        </h1>
+        <p>
+          ${book.title}
+        </p>
+    `;
+  }
 }
 
 customElements.define('default-values-demo', DefaultValues);
@@ -326,29 +326,29 @@ customElements.define('default-values-demo', DefaultValues);
 import { LitElement, html } from '@polymer/lit-element/';
 
 class ArrayDemo extends LitElement {
-	static get properties() {
-		return {
-			myArr: Array
-		};
-	}
+  static get properties() {
+    return {
+      myArr: Array
+    };
+  }
 
-	constructor() {
-		super();
-		this.myArr = [{ id: 1 }, { id: 2}];
-	}
+  constructor() {
+    super();
+    this.myArr = [{ id: 1 }, { id: 2}];
+  }
 
-	render() {
-		const { myArr } = this;
-		
-		return html`
-			<div>
-				${myArr.map((item) => {
-						return html`<h1>${item.id}</h1>`;
-					})
-				}
-			</div>
-		`;
-	}
+  render() {
+    const { myArr } = this;
+    
+    return html`
+      <div>
+        ${myArr.map((item) => {
+            return html`<h1>${item.id}</h1>`;
+          })
+        }
+      </div>
+    `;
+  }
 }
 
 customElements.define('array-demo', ArrayDemo);
@@ -358,20 +358,20 @@ customElements.define('array-demo', ArrayDemo);
 
 ```js
 class AttributesDemo extends LitElement {
-	static get properties() {
+  static get properties() {
         return {
             color: String
         };
     }
 
-	render() {	
-		const { color } = this;
-		return html`
-			<h1 class="${color}">
-				Hello universe!
-			</h1>
-		`;
-	}
+  render() {  
+    const { color } = this;
+    return html`
+      <h1 class="${color}">
+        Hello universe!
+      </h1>
+    `;
+  }
 }
 
 customElements.define('attributes-demo', AttributesDemo);
@@ -386,13 +386,13 @@ import { LitElement, html } from '@polymer/lit-element/';
 import { AppStyles } from 'styles.js';
 
 class StylesDemo extends LitElement {
-	render() {		
-		return html`
-				<h1 class="title">
-					Hello universe!
-				</h1>
-		`;
-	}
+  render() {    
+    return html`
+        <h1 class="title">
+          Hello universe!
+        </h1>
+    `;
+  }
 }
 
 customElements.define('styles-demo', StylesDemo);
@@ -418,19 +418,19 @@ Alternatively, you can write styles inside your component.
 import { LitElement, html } from '@polymer/lit-element/';
 
 class StylesDemo extends LitElement {
-	render() {		
-		return html`
-				<style>
-					.title {
-						color: red;
-					}
-				</style>
-				
-				<h1 class="title">
-					Hello universe!
-				</h1>
-		`;
-	}
+  render() {    
+    return html`
+        <style>
+          .title {
+            color: red;
+          }
+        </style>
+        
+        <h1 class="title">
+          Hello universe!
+        </h1>
+    `;
+  }
 }
 
 customElements.define('styles-demo', StylesDemo);
@@ -444,15 +444,15 @@ import { LitElement, html } from '@polymer/lit-element/';
 import { until } from 'lit-html';
 
 class DirectivesDemo extends LitElement {
-	render() {		
-		return html`
-			  <p>
-			    ${until(
-			        fetch('content.txt').then((r) => r.text()),
-			        html`<span>Loading...</span>`)}
-			  </p>
-			`;
-	}
+  render() {    
+    return html`
+        <p>
+          ${until(
+              fetch('content.txt').then((r) => r.text()),
+              html`<span>Loading...</span>`)}
+        </p>
+      `;
+  }
 }
 
 customElements.define('directives-demo', DirectivesDemo);
@@ -469,13 +469,13 @@ import { LitElement, html } from '@polymer/lit-element/';
 import '@polymer/paper-button/paper-button';
 
 class InstallingComponentsDemo extends LitElement {
-	render() {		
-		return html`
-			<div>
-				<paper-button></paper-button>
-			</div>
-		`;
-	}
+  render() {    
+    return html`
+      <div>
+        <paper-button></paper-button>
+      </div>
+    `;
+  }
 }
 
 customElements.define('installing-components-demo', InstallingComponentsDemo);
