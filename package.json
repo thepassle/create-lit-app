@@ -8,7 +8,7 @@
     "url": "https://github.com/"
   },
   "dependencies": {
-    "@polymer/lit-element": "0.6.0-dev.5",
+    "@polymer/lit-element": "0.6.0-dev.6",
     "@polymer/paper-button": "^3.0.0-pre.21",
     "@polymer/polymer": "^3.0.2",
     "@vaadin/router": "^1.0.0-rc.1",
