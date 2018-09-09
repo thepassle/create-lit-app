@@ -12,7 +12,7 @@ class BooksDemo extends LitElement {
 		this.books = [];
 	}
 
-	firstRendered(){
+	firstUpdated() {
 		fetch('/api/books')
 			.then((res) => {
 				return res.json();
