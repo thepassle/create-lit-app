@@ -175,6 +175,8 @@ Your app is ready to be deployed!
 
 ## Usage
 
+[Create-lit-app on Stackblitz](https://stackblitz.com/edit/create-lit-app)
+
 ## Passing props
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-passing-props?file=book-list.js)
