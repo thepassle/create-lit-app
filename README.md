@@ -34,7 +34,7 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 
 ## Table of Contents
 
-- [Quick start](#quick-start)
+- [Quick start](#quickstart)
 - [Folder Structure](#folder-structure)
 - [Available Scripts](#available-scripts)
   - [npm start](#npm-start)
@@ -741,6 +741,11 @@ Create-lit-app includes the following [polyfills](https://en.wikipedia.org/wiki/
 * [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) via [`promise`](https://github.com/then/promise).
 * [`fetch()`](https://developer.mozilla.org/en/docs/Web/API/Fetch_API) via [`whatwg-fetch`](https://github.com/github/fetch).
 * [`Web Components`](https://github.com/webcomponents/webcomponentsjs) via [`webcomponentsjs`](https://github.com/webcomponents/webcomponentsjs).
+* [`custom-elements-es5-adapter.js`]() According to the spec, only ES6 classes (https://html.spec.whatwg.org/multipage/scripting.html#custom-element-conformance) may be passed to the native customElements.define API. For best performnace, ES6 should be served to browsers that support it, and ES5 code should be serve to those that don't. Since this may not always be possible, it may make sense to compile and serve ES5 to all browsers. However, if you do so, ES5-style custom element classes will now not work on browsers with native Custom Elements because ES5-style classes cannot properly extend ES6 classes, like HTMLElement. As a workaround, if your project has been compiled to ES5, load custom-elements-es5-adapter.js before defining Custom Elements. This adapter will automatically wrap ES5. *The adapter must NOT be compiled.*
+
+* [`babel-helpers.min.js`]() For IE11 and Edge to support such a ES6 features as Symbol()
+* [`webcomponents-loader.js`]() This loader performs client side feature detection and requests only needed polyfills. E.g., for IE11 it will load webcomponents-lite.js which includes full list of polyfills. But for Edge webcomponents-hi-ce-sd.js which contains polyfills for HTML Import, Custom Element and ShadowDOM.
+
 
 ## Installing a Dependency
 
@@ -762,7 +767,10 @@ This works for any library, not just `axios`.
 
 We'd love to have your helping hand on create-lit-app! Feel free to create a pull request if you want to help out.
 
-## Credits/helpful links
+## Credits
+
+### Credits & helpful links:
+
 * The incredibly helpful web-padawan and his [polymer3-webpack-starter](https://github.com/web-padawan/polymer3-webpack-starter)
 * These excellent [LitHTML examples](https://github.com/LarsDenBakker/lit-html-examples) by Lars den Bakker
 * [litHTML](https://github.com/Polymer/lit-html)
