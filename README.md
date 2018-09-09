@@ -12,6 +12,8 @@
 Demo:
 https://create-lit-app.herokuapp.com/
 
+[Create-lit-app on Stackblitz](https://stackblitz.com/edit/create-lit-app)
+
 ## Get Started Immediately
 
 ![Lit Cli](http://thepassle.nl/SGTEST/cla.gif)
