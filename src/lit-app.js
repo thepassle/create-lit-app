@@ -13,7 +13,7 @@ import { AppStyles } from './styles/AppStyles';
 
 class LitApp extends LitElement {
 
-	firstRendered(){
+	firstUpdated(){
 		const router = new Router(this.shadowRoot.querySelector('#outlet'));
 
 		router.setRoutes([
