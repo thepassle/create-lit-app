@@ -51,6 +51,7 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 	- [Using directives](#using-directives)
 	- [Installing components](#installing-components)
 	- [Upwards data flow](#upwards-data-flow)
+	- [Slotted components](#slotted-components)
 - [Lifecycle](#lifecycle)
 - [Polyfills](#polyfills)
 - [Installing a dependency](#installing-a-dependency)
@@ -564,6 +565,122 @@ class AddBookComponent extends LitElement {
 }
 
 customElements.define('add-book-component', AddBookComponent);
+```
+
+## Slotted components
+
+### Basic demo:
+
+`container-element.js`:
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+class ContainerEl extends LitElement {
+  render() {
+    return html`
+      <card-element>
+        <h1 slot="title">Hello universe</h1>
+        <p slot="details">This is some text</p>
+      </card-element>
+    `; 
+  }
+}
+
+customElements.define('container-el', ContainerEl);
+```
+
+
+`card-element.js`:
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+class CardElement extends LitElement {
+  render() {		
+    return html`
+      <div class="card-wrapper">
+        <slot name="title"></slot>
+        <slot name="details"></slot>
+      </div>
+    `;
+  }
+}
+
+customElements.define('card-element', CardElement);
+```
+
+### You can also slot custom elements like so:
+
+`my-app.js`:
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+class MyApp extends LitElement {
+  static get properties() {
+    return {
+      book: Object
+    };
+  }
+
+  constructor() {
+    super();
+    this.book = { author: 'Tolkien', title: 'Lord of the Rings' };
+  }
+
+  render() {
+    const { book } = this;
+    return html`
+      <card-element>
+        <book-item slot="book-details" .book=${book}></book-item>
+      </card-element>
+    `; 
+  }
+}
+
+customElements.define('my-app', MyApp);
+```
+
+`card-element.js`:
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+class CardElement extends LitElement {
+  render() {		
+    return html`
+      <div class="card-wrapper">
+        <slot name="book-details"></slot>
+      </div>
+    `;
+  }
+}
+
+customElements.define('card-element', CardElement);
+```
+
+`book-item.js`:
+
+```js
+class BookItem extends LitElement {
+  static get properties() {
+    return {
+      book: Object
+    };
+  }
+
+  render() {
+    const { book } = this;
+
+    return html`
+      <h1>${book.author}</h1>
+      <p>${book.title}</p>
+    `;
+  }
+}
+
+customElements.define('book-item', BookItem);
 ```
 
 ## Lifecycle
