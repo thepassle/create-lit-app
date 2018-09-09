@@ -175,6 +175,8 @@ Your app is ready to be deployed!
 
 ## Passing props
 
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-passing-props?file=book-list.js)
+
 `book-list.js`:
 
 ```js
@@ -240,6 +242,7 @@ customElements.define('book-list-item', BookListItem);
 
 ## Event handlers
 
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-event-handlers?file=event-handler-demo.js)
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
@@ -261,6 +264,8 @@ customElements.define('event-handler-demo', EventHandlerDemo);
 
 ## Conditional rendering
 
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-conditional-rendering?file=conditional-demo.js)
+
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
 
@@ -269,6 +274,11 @@ class ConditionalDemo extends LitElement {
     return {
       myBool: Boolean
     };
+  }
+
+  constructor() {
+    super();
+    this.myBool = true;
   }
 
   render() {    
@@ -295,6 +305,8 @@ customElements.define('conditional-demo', ConditionalDemo);
 ```
 
 ## Setting default values
+
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-default-values?file=default-values-demo.js)
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
@@ -330,6 +342,8 @@ customElements.define('default-values-demo', DefaultValues);
 
 ## Arrays
 
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-arrays?file=array-demo.js)
+
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
 
@@ -364,6 +378,8 @@ customElements.define('array-demo', ArrayDemo);
 
 ## Attributes
 
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-attributes?file=attributes-demo.js)
+
 ```js
 class AttributesDemo extends LitElement {
   static get properties() {
@@ -391,6 +407,8 @@ customElements.define('attributes-demo', AttributesDemo);
 ```
 
 ## Adding styles
+
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-styles?file=styles-demo.js)
 
 `styles-demo.js`:
 
@@ -497,6 +515,8 @@ customElements.define('installing-components-demo', InstallingComponentsDemo);
 
 ## Upwards data flow
 
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-upwards-data?file=add-book-component.js)
+
 `book-list.js`:
 
 ```js
@@ -570,6 +590,8 @@ customElements.define('add-book-component', AddBookComponent);
 ## Slotted components
 
 ### Basic demo:
+
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-slotted?file=container-element.js)
 
 `container-element.js`:
 
