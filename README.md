@@ -575,6 +575,7 @@ customElements.define('add-book-component', AddBookComponent);
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
+import 'card-element.js';
 
 class ContainerEl extends LitElement {
   render() {
@@ -616,6 +617,8 @@ customElements.define('card-element', CardElement);
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
+import 'card-element.js';
+import 'book-item.js';
 
 class MyApp extends LitElement {
   static get properties() {
