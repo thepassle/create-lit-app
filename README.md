@@ -806,6 +806,11 @@ Text:
 html`<h1>Hello ${name}</h1>`
 ```
 
+Expression:
+```js
+html`<div>${disabled ? 'Off' : 'On'}</div>`
+```
+
 Attribute:
 ```js
 html`<div id=${id}></div>`
