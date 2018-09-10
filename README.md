@@ -49,6 +49,7 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 	- [Conditional rendering](#conditional-rendering)
 	- [Setting default values](#setting-default-values)
 	- [Arrays](#arrays)
+	- [Updating arrays and objects](#updating-arrays-and-objects)
 	- [Attributes](#attributes)
 	- [Adding styles](#adding-styles)
 	- [Using directives](#using-directives)
@@ -405,6 +406,71 @@ class ArrayDemo extends LitElement {
 }
 
 customElements.define('array-demo', ArrayDemo);
+```
+
+## Updating arrays and objects
+
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-updating-objects-arrays)
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+class UpdatingDemo extends LitElement {
+  static get properties() {
+    return {
+      myArr: Array,
+      myObj: Object
+    };
+  }
+
+  constructor() {
+    super();
+    this.myObj = { id: 1, text: "foo" };
+    this.myArr = [{ id: 1 }, { id: 2}];
+  }
+
+  _updateArray() {
+    this.myArr = [...this.myArr, {id: 3}];
+  }
+
+  // Alternatively:
+  // _updateArray() {
+  //   this.myArr.push({id:3});
+  //   this.requestUpdate();
+  // }
+  
+
+  _updateObj() {
+    this.myObj = {...this.myObj, text: "bar"};
+  }
+
+  // Alternatively:
+  // _updateObj() {
+  //   this.myObj.text = "bar";
+  //   this.requestUpdate();
+  // }
+
+  render() {
+    const { myArr, myObj } = this;
+    
+    return html`
+      <div>
+        ${myArr.map((item) => {
+            return html`<h1>${item.id}</h1>`;
+          })
+        }
+        <button @click=${() => this._updateArray()}>Update array</button>
+
+        <br><br>
+
+        <h1>${myObj.id}: ${myObj.text}</h1>
+        <button @click=${() => this._updateObj()}>Update object</button>
+      </div>
+    `;
+  }
+}
+
+customElements.define('updating-demo', UpdatingDemo);
 ```
 
 ## Attributes
