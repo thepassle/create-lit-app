@@ -293,7 +293,7 @@ class ConditionalDemo extends LitElement {
         ${myBool ? 'foo' : 'bar'}
       </div>
 
-      // or return some html
+      <!-- or return some html -->
       <div>
         ${myBool 
           ? html`<h1>foo</h1>`
