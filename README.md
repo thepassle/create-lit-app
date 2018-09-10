@@ -56,6 +56,7 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 	- [Upwards data flow](#upwards-data-flow)
 	- [Slotted components](#slotted-components)
 - [Lifecycle](#lifecycle)
+- [Cheatsheet](#cheatsheet)
 - [Polyfills](#polyfills)
 - [Installing a dependency](#installing-a-dependency)
 - [Contributing](#contributing)
@@ -796,6 +797,34 @@ customElements.define('book-item', BookItem);
   element's template is rendered by returning an element into which to
   render. By default this creates a shadowRoot for the element.
   To render into the element's childNodes, return `this`.
+
+## Cheatsheet
+
+Text:
+
+```js
+html`<h1>Hello ${name}</h1>`
+```
+
+Attribute:
+```js
+html`<div id=${id}></div>`
+```
+
+Boolean Attribute:
+```js
+html`<input type="checkbox" ?checked=${checked}>`
+```
+
+Property:
+```js
+html`<input .value=${value}>`
+```
+
+Event Handler:
+```js
+html`<button @click=${(e) => console.log('clicked')}>Click Me</button>`
+```
 
 ## Polyfills
 
