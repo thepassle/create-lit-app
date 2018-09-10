@@ -385,21 +385,32 @@ customElements.define('array-demo', ArrayDemo);
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-attributes?file=attributes-demo.js)
 
 ```js
+import { LitElement, html } from '@polymer/lit-element/';
+import { AppStyles } from 'styles.js';
+
 class AttributesDemo extends LitElement {
   static get properties() {
     return {
-      color: String
+      color: String,
+      checked: Boolean
     };
   }
     
   constructor() {
     super();
     this.color = "red";
+    this.checked = true;
   }
 
   render() {  
-    const { color } = this;
+    const { color, checked } = this;
+
     return html`
+      ${ AppStyles }
+
+      <!-- boolean values -->
+      <input type="checkbox" ?checked=${checked}>
+
       <h1 class="${color}">
         Hello universe!
       </h1>
