@@ -43,6 +43,7 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
   - [npm test](#npm-test)
   - [npm run build](#npm-run-build)
 - [Usage](#usage)
+	- [Basic template](#basic-template)
 	- [Passing props](#passing-props)
 	- [Event handlers](#event-handlers)
 	- [Conditional rendering](#conditional-rendering)
@@ -176,6 +177,31 @@ Your app is ready to be deployed!
 ## Usage
 
 [Create-lit-app on Stackblitz](https://stackblitz.com/edit/create-lit-app)
+
+## Basic template
+
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-basic-template)
+
+`basic-demo.js`:
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+const helloTemplate = (name) => html`<h1>Hello ${name}!</h1>`;
+
+class BasicDemo extends LitElement {
+  render() {    
+    return html`
+      <div>
+        ${helloTemplate("universe")}
+      </div>
+    `;
+  }
+}
+
+customElements.define('basic-demo', BasicDemo);
+```
+
 
 ## Passing props
 
