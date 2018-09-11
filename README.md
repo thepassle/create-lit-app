@@ -51,6 +51,7 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 	- [Arrays](#arrays)
 	- [Updating arrays and objects](#updating-arrays-and-objects)
 	- [Attributes](#attributes)
+	- [Reflecting props to attributes](#reflecting-props-to-attributes)
 	- [Adding styles](#adding-styles)
 	- [Using directives](#using-directives)
 	- [Installing components](#installing-components)
@@ -388,7 +389,7 @@ class ArrayDemo extends LitElement {
 
   constructor() {
     super();
-    this.myArr = [{ id: 1 }, { id: 2}];
+    this.myArr = [{ name: "foo" }, { name: "bar"}];
   }
 
   render() {
@@ -397,7 +398,7 @@ class ArrayDemo extends LitElement {
     return html`
       <div>
         ${myArr.map((item) => {
-            return html`<h1>${item.id}</h1>`;
+            return html`<h1>${item.name}</h1>`;
           })
         }
       </div>
@@ -512,6 +513,72 @@ class AttributesDemo extends LitElement {
 }
 
 customElements.define('attributes-demo', AttributesDemo);
+```
+
+## Reflecting props to attributes
+
+`my-app.js`:
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+class MyApp extends LitElement {
+  render() {
+    return html`
+        <style>
+          my-button {
+            color: green;
+          }
+          my-button[disabled] {
+            color: red;
+          }
+        </style>
+
+        <my-button disabled></my-button>
+        <my-button></my-button>
+
+    `; 
+  }
+}
+
+customElements.define('my-app', MyApp);
+```
+
+`my-button.js`:
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+class MyButton extends LitElement {
+  static get properties() {
+    return {
+      disabled: {
+        type: Boolean,
+        reflect: true
+      }
+    };
+  }
+
+  render() {    
+    const { disabled } = this;
+    return html`
+      <style>
+        .disabled {
+          cursor: not-allowed;
+        }
+        .enabled {
+          cursor: pointer;
+        }
+      </style>
+
+      <div class="${disabled ? 'disabled' : 'enabled'}">
+        ${disabled ? 'Click me!' : 'Dont click me!'}
+      </div>
+    `;
+  }
+}
+
+customElements.define('my-button', MyButton);
 ```
 
 ## Adding styles
