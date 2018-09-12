@@ -61,6 +61,7 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 - [Cheatsheet](#cheatsheet)
 - [Polyfills](#polyfills)
 - [Installing a dependency](#installing-a-dependency)
+- [Add LitElement to a website](#add-litelement-to-a-website)
 - [Contributing](#contributing)
 - [Credits](#credits)
 - [Further reading](#further-reading)
@@ -993,6 +994,47 @@ yarn add axios
 ```
 
 This works for any library, not just `axios`.
+
+## Adding LitElement to a website
+
+In this section, we will show how to add a LitElement component to an existing HTML page. You can follow along with your own website, or create an empty HTML file to practice.
+
+There will be no complicated tools or install requirements — **to complete this section, you only need an internet connection, and a minute of your time.**
+
+```html
+<html>
+<head>
+  <!-- Polyfills only needed for Firefox and Edge. -->
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@next/webcomponents-loader.js"></script>
+</head>
+<body>
+  <!-- Works only on browsers that support Javascript modules like
+       Chrome, Safari, Firefox 60, Edge 17 -->
+  <script type="module">
+    import { LitElement, html } from 'https://unpkg.com/@polymer/lit-element@0.6.0-dev.6/lit-element.js?module';
+    
+    class MyElement extends LitElement {
+      static get properties() { 
+        return { 
+          mood: String 
+        }
+      }
+
+      render() {
+        const { mood } = this;
+        return html`<style> .mood { color: green; } </style>
+          Web Components are <span class="mood">${mood}</span>!`;
+      }      
+    }
+
+    customElements.define('my-element', MyElement);
+  </script>
+  
+  <my-element mood="great"></my-element>
+  
+</body>
+</html>
+```
 
 ## Contributing
 
