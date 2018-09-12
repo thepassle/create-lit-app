@@ -2,8 +2,6 @@ import { LitElement, html } from '@polymer/lit-element/';
 
 import { Router } from '@vaadin/router';
 
-import '@polymer/paper-button/paper-button';
-
 import './components/home-page.js';
 import './components/books-demo.js';
 import './components/redux-demo.js';
@@ -12,7 +10,6 @@ import './components/not-found.js';
 import { AppStyles } from './styles/AppStyles';
 
 class LitApp extends LitElement {
-
 	firstUpdated(){
 		const router = new Router(this.shadowRoot.querySelector('#outlet'));
 
