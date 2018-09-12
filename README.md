@@ -650,15 +650,18 @@ customElements.define('styles-demo', StylesDemo);
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
-import { until } from 'lit-html';
+import { until } from 'lit-html/directives/until';
 
 class DirectivesDemo extends LitElement {
   render() {    
     return html`
         <p>
           ${until(
-              fetch('content.txt').then((r) => r.text()),
-              html`<span>Loading...</span>`)}
+              fetch('https://swapi.co/api/people/1')
+                .then((r) => r.json())
+                .then((r) => html`${r.name}`),
+              html`<span>Loading...</span>`)
+          }
         </p>
       `;
   }
