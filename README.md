@@ -645,6 +645,7 @@ customElements.define('styles-demo', StylesDemo);
 
 ## Using directives
 
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-directives)
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
