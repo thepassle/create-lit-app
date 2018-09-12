@@ -20,33 +20,29 @@
   </test-fixture>
 
   <script>
-    suite('redux-demo tests', function() {
+    suite('redux-demo tests', () => {
       var element;
 
-      setup(function() {
+      setup(async () => {
         element = fixture('basic');
+        await element.updateComplete;
       });
 
-      test('increasing and decreasing the counter works', function(done) {
-        flush(() => {
-          var incrementButton = element.shadowRoot.querySelectorAll('button')[0];
-          var decrementButton = element.shadowRoot.querySelectorAll('button')[1];
-          
-          incrementButton.click();
-          
-          flush(() => {
-            var total = element.shadowRoot.querySelector('p').textContent;
-            assert.equal(total, "count: 1");
-          
-            decrementButton.click();
+      test('increasing and decreasing the counter works', async () => {
+        var incrementButton = element.shadowRoot.querySelectorAll('button')[0];
+        var decrementButton = element.shadowRoot.querySelectorAll('button')[1];
+        
+        incrementButton.click();
+        await element.updateComplete;
+        
+        var total = element.shadowRoot.querySelector('p').textContent;
+        assert.equal(total, "count: 1");
+      
+        decrementButton.click();
+        await element.updateComplete;
 
-            flush(() => {
-              var total = element.shadowRoot.querySelector('p').textContent;
-              assert.equal(total, "count: 0");
-              done();
-            });
-          });
-        });
+        var total = element.shadowRoot.querySelector('p').textContent;
+        assert.equal(total, "count: 0");
       });
     });
   </script>
