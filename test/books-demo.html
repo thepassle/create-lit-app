@@ -45,7 +45,6 @@
       test('books are loaded correctly', function(done) {
         flush(() => {
           var books = element.shadowRoot.querySelectorAll('h3');
-          debugger;
           setTimeout(function() {
             assert.equal(books[0].textContent, "A Game of Thrones");
             done();
