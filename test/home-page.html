@@ -19,19 +19,17 @@
   </test-fixture>
 
   <script>
-    suite('home-page tests', function() {
+    suite('home-page tests', () => {
       var home;
 
-      setup(function() {
+      setup(async () => {
         home = fixture('basic');
+        await home.updateComplete;
       });
 
-      test('homepage shows the welcome message', function(done) {
-        flush(() => {
-          var title = home.shadowRoot.querySelector('h1').textContent;
-          assert.equal(title, "Welcome");
-          done();
-        });
+      test('homepage shows the welcome message', () => {
+        var title = home.shadowRoot.querySelector('h1').textContent;
+        assert.equal(title, "Welcome");
       });
     });
   </script>
