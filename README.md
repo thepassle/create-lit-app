@@ -37,11 +37,10 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 ## Table of Contents
 
 - [Quick start](#quickstart)
-- [Folder Structure](#folder-structure)
-- [Available Scripts](#available-scripts)
   - [npm start](#npm-start)
   - [npm test](#npm-test)
-  - [npm run build](#npm-run-build)
+  - [npm build](#npm-build)
+- [Folder Structure](#folder-structure)
 - [Usage](#usage)
 	- [Basic template](#basic-template)
 	- [Passing props](#passing-props)
@@ -76,7 +75,7 @@ cd my-app
 npm start
 ```
 
-## Start the development server
+### npm start
 
 Start `webpack-dev-server` on localhost `http://127.0.0.1:3000`:
 
@@ -84,7 +83,7 @@ Start `webpack-dev-server` on localhost `http://127.0.0.1:3000`:
 npm run start
 ```
 
-## Run tests
+### npm test
 
 Run tests:
 
@@ -92,7 +91,7 @@ Run tests:
 npm run test
 ```
 
-## Build with webpack
+### npm build
 
 Run the production build:
 
@@ -101,7 +100,7 @@ npm run build
 node server.js
 ```
 
-As easy as that! Next you can upload it to heroku/digital ocean/whatever.
+As easy as that! Your app is ready to be deployed.
 
 ## Folder Structure
 
@@ -153,36 +152,11 @@ create-lit-app/
 	webpack.config.js
 ```
 
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner.<br>
-
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles create-lit-app in production mode and optimizes the build for the best performance.
-
-Your app is ready to be deployed!
-
-
 ## Usage
 
 [Create-lit-app on Stackblitz](https://stackblitz.com/edit/create-lit-app)
 
-## Basic template
+### Basic template
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-basic-template)
 
@@ -207,7 +181,7 @@ customElements.define('basic-demo', BasicDemo);
 ```
 
 
-## Passing props
+### Passing props
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-passing-props?file=book-list.js)
 
@@ -274,7 +248,7 @@ class BookListItem extends LitElement {
 customElements.define('book-list-item', BookListItem);
 ```
 
-## Event handlers
+### Event handlers
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-event-handlers?file=event-handler-demo.js)
 
@@ -296,7 +270,7 @@ class EventHandlerDemo extends LitElement {
 customElements.define('event-handler-demo', EventHandlerDemo);
 ```
 
-## Conditional rendering
+### Conditional rendering
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-conditional-rendering?file=conditional-demo.js)
 
@@ -338,7 +312,7 @@ customElements.define('conditional-demo', ConditionalDemo);
 
 ```
 
-## Setting default values
+### Setting default values
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-default-values?file=default-values-demo.js)
 
@@ -374,7 +348,7 @@ class DefaultValues extends LitElement {
 customElements.define('default-values-demo', DefaultValues);
 ```
 
-## Arrays
+### Arrays
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-arrays?file=array-demo.js)
 
@@ -410,7 +384,7 @@ class ArrayDemo extends LitElement {
 customElements.define('array-demo', ArrayDemo);
 ```
 
-## Updating arrays and objects
+### Updating arrays and objects
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-updating-objects-arrays)
 
@@ -475,7 +449,7 @@ class UpdatingDemo extends LitElement {
 customElements.define('updating-demo', UpdatingDemo);
 ```
 
-## Attributes
+### Attributes
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-attributes?file=attributes-demo.js)
 
@@ -516,7 +490,7 @@ class AttributesDemo extends LitElement {
 customElements.define('attributes-demo', AttributesDemo);
 ```
 
-## Reflecting props to attributes
+### Reflecting props to attributes
 
 `my-app.js`:
 
@@ -582,7 +556,7 @@ class MyButton extends LitElement {
 customElements.define('my-button', MyButton);
 ```
 
-## Adding styles
+### Adding styles
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-styles?file=styles-demo.js)
 
@@ -644,7 +618,7 @@ class StylesDemo extends LitElement {
 customElements.define('styles-demo', StylesDemo);
 ```
 
-## Using directives
+### Using directives
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-directives)
 
@@ -670,7 +644,7 @@ class DirectivesDemo extends LitElement {
 customElements.define('directives-demo', DirectivesDemo);
 ```
 
-## Installing components
+### Installing components
 
 Run `npm i --save @polymer/paper-button`
 
@@ -693,7 +667,7 @@ class InstallingComponentsDemo extends LitElement {
 customElements.define('installing-components-demo', InstallingComponentsDemo);
 ```
 
-## Upwards data flow
+### Upwards data flow
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-upwards-data?file=add-book-component.js)
 
@@ -767,9 +741,9 @@ class AddBookComponent extends LitElement {
 customElements.define('add-book-component', AddBookComponent);
 ```
 
-## Slotted components
+### Slotted components
 
-### Basic demo:
+#### Basic demo:
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-slotted?file=container-element.js)
 
@@ -813,7 +787,7 @@ class CardElement extends LitElement {
 customElements.define('card-element', CardElement);
 ```
 
-### You can also slot custom elements like so:
+#### You can also slot custom elements like so:
 
 `my-app.js`:
 
