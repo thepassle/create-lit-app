@@ -52,6 +52,7 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 	- [Attributes](#attributes)
 	- [Reflecting props to attributes](#reflecting-props-to-attributes)
 	- [Adding styles](#adding-styles)
+	- [Querying dom](#querying-dom)
 	- [Using directives](#using-directives)
 	- [Installing components](#installing-components)
 	- [Upwards data flow](#upwards-data-flow)
@@ -60,6 +61,7 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 - [Cheatsheet](#cheatsheet)
 - [Polyfills](#polyfills)
 - [Installing a dependency](#installing-a-dependency)
+- [Testing your components](#testing-your-components)
 - [Add LitElement to a website](#add-litelement-to-a-website)
 - [Contributing](#contributing)
 - [Credits](#credits)
@@ -618,6 +620,31 @@ class StylesDemo extends LitElement {
 customElements.define('styles-demo', StylesDemo);
 ```
 
+### Querying dom
+
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-querying-dom?file=querying-dom-demo.js)
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+class QueryingDomDemo extends LitElement {
+  firstUpdated() {
+    const title = this.shadowRoot.querySelector('h1').textContent;
+    console.log(title);
+  }
+  
+  render() {    
+    return html`
+        <h1>
+          Hello universe!
+        </h1>
+      `;
+  }
+}
+
+customElements.define('querying-dom-demo', QueryingDomDemo);
+```
+
 ### Using directives
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-directives)
@@ -971,6 +998,54 @@ yarn add axios
 ```
 
 This works for any library, not just `axios`.
+
+## Testing your components
+
+Create-lit-app uses [web components tester](https://www.npmjs.com/package/web-component-tester) for it's testing, but you can also eject and use something like Karma. You can start the test runner with `npm test`, and edit test files in the `test/` folder. Here's an example of a test:
+
+`test/home-page.html`:
+
+```html
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>home-page</title>
+
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script src="../node_modules/wct-browser-legacy/browser.js"></script>
+
+  <!-- Import the element to test -->
+  <script type="module" src="../src/components/home-page.js"></script>
+
+</head>
+<body>
+
+  <test-fixture id="basic">
+    <template>
+       <home-page></home-page>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('home-page tests', () => {
+      var home;
+
+      setup(async () => {
+        home = fixture('basic');
+
+        // note how we leverage the updateComplete lifecycle method to wait until our component is ready
+        await home.updateComplete;
+      });
+
+      test('homepage shows the welcome message', () => {
+        var title = home.shadowRoot.querySelector('h1').textContent;
+        assert.equal(title, "Welcome");
+      });
+    });
+  </script>
+</body>
+</html>
+```
 
 ## Add LitElement to a website
 
