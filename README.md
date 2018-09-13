@@ -63,6 +63,10 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 - [Installing a dependency](#installing-a-dependency)
 - [Testing your components](#testing-your-components)
 - [Add LitElement to a website](#add-litelement-to-a-website)
+- [Frequently asked questions](#frequently-asked-questions)
+	- [How does lit-html render?](#how-does-lit-html-render?)
+	- [Difference with VDOM?](#difference-with-vdom?)
+	- [Accessibility and shadow dom?](#accessibility-and-shadow-dom?)
 - [Contributing](#contributing)
 - [Credits](#credits)
 - [Further reading](#further-reading)
@@ -1088,6 +1092,73 @@ There will be no complicated tools or install requirements — **to complete thi
 </body>
 </html>
 ```
+
+## Frequently asked questions
+
+
+### How does lit-html render?
+Lit-html lets you write HTML templates with JavaScript template literals and efficiently render and re-render those templates to DOM. Tagged template literals are a feature of ES6 that can span multiple lines, and contain javascript expressions. A tagged template literal could look something like this:
+
+```js
+const planet = "world";
+
+html`hello ${planet}!`;
+```
+
+Tagged template literals are just standard ES6 syntax. And these tags are actually just functions! Consider the following example:
+
+```js
+function customFunction(strings) {
+	console.log(strings); // ["Hello universe!"]
+}
+
+customFunction`Hello universe!`;
+```
+
+They can also handle expressions:
+
+```js
+const planet = "world";
+
+function customFunction(strings, ...values) {
+	console.log(strings); // ["Hello ", "! five times two equals "]
+	console.log(values); // ["world", 10]
+}
+
+customFunction`Hello ${planet}! five times two equals ${ 5 * 2 }`;
+```
+
+And if we look in the [source code](https://github.com/Polymer/lit-html/blob/master/src/lit-html.ts) we can see that's exactly what lit-html does:
+
+```js
+/**
+ * Interprets a template literal as an HTML template that can efficiently
+ * render to and update a container.
+ */
+export const html = (strings: TemplateStringsArray, ...values: any[]) =>
+    new TemplateResult(strings, values, 'html', defaultTemplateProcessor);
+```
+
+Lit-html's `html` tag doesn't return dom, it returns an object representing the template, called a TemplateResult.
+
+A `<template>` element is an inert fragment of DOM. Inside a `<template>`, script don't run, images don't load, custom elements aren't upgraded, etc. `<template>`s can be efficiently cloned. They're usually used to tell the HTML parser that a section of the document must not be instantiated when parsed, and will be managed by code at a later time, but it can also be created imperatively with createElement and innerHTML.
+
+Lit-html creates HTML `<template>` elements from the tagged template literals, and then clone's them to create new DOM.
+
+On the initial render it clones the template, then walks it using the remembered placeholder positions, to create Part objects.
+
+A Part is a "hole" in the DOM where values can be injected. lit-html includes two type of parts by default: NodePart and AttributePart, which let you set text content and attribute values respectively. The Parts, container, and template they were created from are grouped together in an object called a TemplateInstance.
+
+
+### Difference with VDOM?
+VDOM implementations keep a separate JavaScript structure representing the DOM structure in the browser. For all the changes to the structure the VDOM implementation will perform a diffing operation and will perform updates to the DOM itself.
+
+While this method is effective, it does mean a lot of excessive processing is done. Lit-html leverages the ECMAScript ES6 tagged template literals feature to use native browser rendering engine implementations to perform the same task. 
+
+### Accessibility and shadow dom?
+Screenreaders have no difficulty with piercing shadow dom. From the Polymer FAQ:
+
+> “A common misconception is that the Shadow DOM doesn’t play nicely with assistive technologies. The reality is that the Shadow DOM can in fact be traversed and any node with Shadow DOM has a shadowRoot property which points to its shadow document. Most assistive technologies hook directly into the browser’s rendering tree, so they just see the fully composed tree.”
 
 ## Contributing
 
