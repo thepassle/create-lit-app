@@ -53,6 +53,7 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 	- [Reflecting props to attributes](#reflecting-props-to-attributes)
 	- [Adding styles](#adding-styles)
 	- [Querying dom](#querying-dom)
+	- [Making api calls](#making-api-calls)
 	- [Using directives](#using-directives)
 	- [Installing components](#installing-components)
 	- [Upwards data flow](#upwards-data-flow)
@@ -649,6 +650,51 @@ class QueryingDomDemo extends LitElement {
 
 customElements.define('querying-dom-demo', QueryingDomDemo);
 ```
+
+### Making api calls
+
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-making-api-calls?file=create-lit-app.js)
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+class ApiDemo extends LitElement {
+  static get properties() {
+    return {
+      response: Array
+    }
+  }
+
+  constructor() {
+    super();
+    this.response = [];
+  }
+
+  firstUpdated() {
+    fetch('https://swapi.co/api/people/')
+      .then((r) => r.json())
+      .then((r) => {
+        this.response = r.results;
+      });
+  }
+
+  render() {
+    const { response } = this;
+    return html`
+        <ul>
+          ${response.map((item) => {
+              return html`<li>${item.name}</li>`;
+            })
+          }
+        </ul>
+      `;
+  }
+}
+
+customElements.define('api-demo', ApiDemo);
+```
+
+Alternatively you can use a [directive](#using-directives).
 
 ### Using directives
 
