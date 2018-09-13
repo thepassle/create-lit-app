@@ -620,7 +620,8 @@ class StylesDemo extends LitElement {
 customElements.define('styles-demo', StylesDemo);
 ```
 
-### Querying dom
+
+### Querying dom
 
 [Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-querying-dom?file=querying-dom-demo.js)
 
