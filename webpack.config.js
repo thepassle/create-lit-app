@@ -78,7 +78,6 @@ const commonConfig = merge([
       rules: [
         {
           test: /\.js$/,
-          // We need to transpile Polymer, do not exclude node_modules
           use: [
             {
               loader: 'babel-loader',
