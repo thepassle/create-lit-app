@@ -1227,11 +1227,13 @@ We'd love to have your helping hand on create-lit-app! Feel free to create a pul
 
 ### Credits & helpful links:
 
-* The incredibly helpful web-padawan and his [polymer3-webpack-starter](https://github.com/web-padawan/polymer3-webpack-starter)
-* These excellent [LitHTML examples](https://github.com/LarsDenBakker/lit-html-examples) by Lars den Bakker
+* [Awesome lit-html](https://github.com/web-padawan/awesome-lit-html)
 * [litHTML](https://github.com/Polymer/lit-html)
+* [Polymer slack](https://polymer.slack.com/)
 * [Vaadin Router](https://github.com/vaadin/vaadin-router)
-* [polymer PWA starter kit](https://github.com/Polymer/pwa-starter-kit)
+* [Polymer3-webpack-starter](https://github.com/web-padawan/polymer3-webpack-starter)
+* [Polymer PWA starter kit](https://github.com/Polymer/pwa-starter-kit)
+* [Moving from Polymer to lit-html](https://43081j.com/2018/08/future-of-polymer)
 
 ## Further reading
 * [Redux](https://redux.js.org/introduction)
