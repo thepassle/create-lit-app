@@ -69,6 +69,7 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 	- [Difference with VDOM?](#difference-with-vdom)
 	- [Accessibility and shadow dom?](#accessibility-and-shadow-dom)
 	- [Can I use jQuery?](#can-i-use-jquery)
+- [Browser support](#browser-support)
 - [Contributing](#contributing)
 - [Credits](#credits)
 - [Further reading](#further-reading)
@@ -1211,6 +1212,12 @@ Screenreaders have no difficulty with piercing shadow dom. From the Polymer FAQ:
 jQuery plugins don’t work inside of Shadow DOM because typically they try to query for something starting at the document level and the shadow root blocks this.
 
 Read more about it in [this](https://medium.com/dev-channel/dont-use-jquery-plugins-with-shadow-dom-e161f1891511) medium post by [Rob Dodson](https://twitter.com/rob_dodson)
+
+## Browser support
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>iOS Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
+| --------- | --------- | --------- | --------- | --------- | --------- |
+| IE11, Edge| last 3 versions| last 3 versions| last 3 versions| last 2 versions| last 3 versions
 
 ## Contributing
 
