@@ -726,25 +726,25 @@ customElements.define('directives-demo', DirectivesDemo);
 
 ### Installing components
 
-Run `npm i --save @polymer/paper-button`
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-installing-components?file=installing-demo.js)
+
+Run `npm i --save @material/mwc-button`
 
 Import and use:
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
-import '@polymer/paper-button/paper-button';
+import '@material/mwc-button/';
 
-class InstallingComponentsDemo extends LitElement {
+class InstallingDemo extends LitElement {
   render() {    
     return html`
-      <div>
-        <paper-button></paper-button>
-      </div>
+        <mwc-button>Click me!</mwc-button>
     `;
   }
 }
 
-customElements.define('installing-components-demo', InstallingComponentsDemo);
+customElements.define('installing-demo', InstallingDemo);
 ```
 
 ### Upwards data flow
@@ -1234,6 +1234,7 @@ We'd love to have your helping hand on create-lit-app! Feel free to create a pul
 * [Polymer3-webpack-starter](https://github.com/web-padawan/polymer3-webpack-starter)
 * [Polymer PWA starter kit](https://github.com/Polymer/pwa-starter-kit)
 * [Moving from Polymer to lit-html](https://43081j.com/2018/08/future-of-polymer)
+* [Material components](https://github.com/material-components/material-components-web-components)
 
 ## Further reading
 * [Redux](https://redux.js.org/introduction)
