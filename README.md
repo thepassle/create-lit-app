@@ -65,9 +65,10 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 - [Testing your components](#testing-your-components)
 - [Add LitElement to a website](#add-litelement-to-a-website)
 - [Frequently asked questions](#frequently-asked-questions)
-	- [How does lit-html render?](#how-does-lit-html-render?)
-	- [Difference with VDOM?](#difference-with-vdom?)
-	- [Accessibility and shadow dom?](#accessibility-and-shadow-dom?)
+	- [How does lit-html render](#how-does-lit-html-render?)
+	- [Difference with VDOM](#difference-with-vdom?)
+	- [Accessibility and shadow dom](#accessibility-and-shadow-dom?)
+	- [Can I use jQuery?](#can-i-use-jquery)
 - [Contributing](#contributing)
 - [Credits](#credits)
 - [Further reading](#further-reading)
@@ -1205,6 +1206,11 @@ While this method is effective, it does mean a lot of excessive processing is do
 Screenreaders have no difficulty with piercing shadow dom. From the Polymer FAQ:
 
 > “A common misconception is that the Shadow DOM doesn’t play nicely with assistive technologies. The reality is that the Shadow DOM can in fact be traversed and any node with Shadow DOM has a shadowRoot property which points to its shadow document. Most assistive technologies hook directly into the browser’s rendering tree, so they just see the fully composed tree.”
+
+### Can I use jQuery?
+jQuery plugins don’t work inside of Shadow DOM because typically they try to query for something starting at the document level and the shadow root blocks this.
+
+Read more about it in [this](https://medium.com/dev-channel/dont-use-jquery-plugins-with-shadow-dom-e161f1891511) medium post by [Rob Dodson](https://twitter.com/rob_dodson)
 
 ## Contributing
 
