@@ -8,13 +8,13 @@
     "url": "https://github.com/"
   },
   "dependencies": {
-    "@polymer/lit-element": "0.6.0-dev.6",
+    "@polymer/lit-element": "^0.6.0",
     "@polymer/paper-button": "^3.0.0-pre.21",
     "@polymer/polymer": "^3.0.2",
     "@vaadin/router": "^1.0.0-rc.1",
     "@webcomponents/webcomponentsjs": "^2.0.2",
     "express": "^4.16.3",
-    "lit-html": "^0.10.2",
+    "lit-html": "^0.11.3",
     "polymer-cli": "^1.7.4",
     "promise-polyfill": "^8.0.0",
     "pwa-helpers": "^0.8.2",
