@@ -67,6 +67,7 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 - [Frequently asked questions](#frequently-asked-questions)
 	- [How does lit-html render?](#how-does-lit-html-render)
 	- [Difference with VDOM?](#difference-with-vdom)
+	- [What is shadow dom?](#what-is-shadow-dom)
 	- [Accessibility and shadow dom?](#accessibility-and-shadow-dom)
 	- [Can I use jQuery?](#can-i-use-jquery)
 - [Browser support](#browser-support)
@@ -1202,6 +1203,10 @@ A Part is a "hole" in the DOM where values can be injected. lit-html includes tw
 VDOM implementations keep a separate JavaScript structure representing the DOM structure in the browser. For all the changes to the structure the VDOM implementation will perform a diffing operation and will perform updates to the DOM itself.
 
 While this method is effective, it does mean a lot of excessive processing is done. Lit-html leverages the ECMAScript ES6 tagged template literals feature to use native browser rendering engine implementations to perform the same task. 
+
+### What is shadow dom?
+
+Read [this post](https://blog.revillweb.com/open-vs-closed-shadow-dom-9f3d7427d1af) by [Leon Revill](https://twitter.com/revillweb) on shadow dom and the difference between the `open` and `closed` modes.
 
 ### Accessibility and shadow dom?
 Screenreaders have no difficulty with piercing shadow dom. From the Polymer FAQ:
