@@ -995,6 +995,8 @@ customElements.define('book-item', BookItem);
 
 Example:
 
+![lifecycle](http://thepassle.nl/SGTEST/lifecycle.gif)
+
 `my-app.js`:
 
 ```js
