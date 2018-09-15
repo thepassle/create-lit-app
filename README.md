@@ -66,6 +66,8 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 - [Add LitElement to a website](#add-litelement-to-a-website)
 - [Frequently asked questions](#frequently-asked-questions)
 	- [How does lit-html render?](#how-does-lit-html-render)
+	- [How does LitElement know when to rerender?](#how-does-litelement-know-when-to-rerender)
+	- [Why is my component not rerendering?](#why-is-my-component-not-rerendering)
 	- [Difference with VDOM?](#difference-with-vdom)
 	- [What is shadow dom?](#what-is-shadow-dom)
 	- [Accessibility and shadow dom?](#accessibility-and-shadow-dom)
@@ -1198,6 +1200,59 @@ On the initial render it clones the template, then walks it using the remembered
 
 A Part is a "hole" in the DOM where values can be injected. lit-html includes two type of parts by default: NodePart and AttributePart, which let you set text content and attribute values respectively. The Parts, container, and template they were created from are grouped together in an object called a TemplateInstance.
 
+### How does LitElement know when to rerender?
+
+LitElement reacts to changes in properties and rerenders your component if a value has changed. You can declare these properties in the properties getter:
+
+```js
+static get properties() {
+  return {
+    myBoolean: false
+  }
+}
+```
+
+Setting `this.myBoolean = true;` will trigger a rerender.
+
+### Why is my component not rerendering?
+
+Deep changes in objects or arrays are not observed and need to be immutably set or require you to manually call `this.requestUpdate()`. Consider the following example:
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+class UpdatingDemo extends LitElement {
+  static get properties() {
+    return {
+      myObj: Object
+    };
+  }
+
+  constructor() {
+    super();
+    this.myObj = { id: 1, text: "foo" };
+  }
+
+  _updateObj() {
+    // this.myObj.text = "bar"; This change will not get picked up and wont trigger a rerender. You can however call this.requestUpdate(); to manually cause the rerender.
+
+    this.myObj = {...this.myObj, text: "bar"}; // This change will get picked up and cause your component to rerender.
+  }
+
+  render() {
+    const { myObj } = this;
+    
+    return html`
+      <div>
+        ${myObj.text} // "foo"
+        <button @click=${() => this._updateObj()}>Update</button>
+      </div>
+    `;
+  }
+}
+
+customElements.define('updating-demo', UpdatingDemo);
+```
 
 ### Difference with VDOM?
 VDOM implementations keep a separate JavaScript structure representing the DOM structure in the browser. For all the changes to the structure the VDOM implementation will perform a diffing operation and will perform updates to the DOM itself.
