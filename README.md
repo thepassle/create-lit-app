@@ -993,6 +993,112 @@ customElements.define('book-item', BookItem);
   render. By default this creates a shadowRoot for the element.
   To render into the element's childNodes, return `this`.
 
+Example:
+
+`my-app.js`:
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+import 'lifecycle-demo.js';
+
+class myApp extends LitElement {
+  static get properties() {
+    return {
+      showElement: Boolean
+    };
+  }
+
+  constructor() {
+    super();
+    this.showElement = true;
+  }
+
+  render() {
+    let { showElement } = this;
+
+    return html`
+      <!-- 
+      Removing the element from dom will trigger a `disconnectedCallback()` in `lifecycle-demo.js`,
+      adding it to dom will trigger a first `firstUpdated()` and a `updated()` in `lifecycle-demo.js` 
+      -->
+      <button @click=${() => this.showElement = !this.showElement}>toggle element</button>
+
+      ${showElement 
+        ? html`<lifecycle-demo></lifecycle-demo>`
+        : ''
+      }
+    `;
+  }
+}
+
+customElements.define('my-app', myApp);
+```
+
+`lifecycle-demo.js`:
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+class LifecycleDemo extends LitElement {
+  static get properties() {
+    return {
+      myArr: Array
+    };
+  }
+
+  constructor() {
+    super();
+    this.myArr = ['foo', 'bar'];
+  }
+
+  /**
+  * Called after the element's DOM has been updated the first time, immediately before updated() 
+  * is called. This method can be useful for querying dom. Setting properties inside 
+  * this method will trigger the element to update.
+  */
+  firstUpdated() {
+    console.log('first updated!');
+  }
+
+  /**
+  * Implement to perform post-updating tasks via DOM APIs, for example, focusing an element.
+  * Setting properties inside this method will *not* trigger another update.
+  */
+  updated(changedProps) {
+    super.updated(changedProps);
+    console.log('updated!');
+  }
+
+  /**
+  * Invoked each time the custom element is disconnected from the document's DOM.
+  * Useful for running clean up code.
+  */
+  disconnectedCallback() {
+    console.log('disconnected!');
+  }
+
+  _addItem() {
+    this.myArr = [...this.myArr, 'baz'];
+  }
+
+  render() {
+    let { myArr } = this;
+
+    return html`
+      <!-- Adding an item will cause myArr to change, the property change will get picked up and trigger an update -->
+      <button @click=${() => this._addItem()}>add item</button>
+
+      ${myArr.map((item) => {
+        return html`<li>${item}</li>`;
+      })}
+    `;
+  }
+}
+
+customElements.define('lifecycle-demo', LifecycleDemo);
+```
+
 ## Cheatsheet
 
 Text:
