@@ -1352,7 +1352,7 @@ class UpdatingDemo extends LitElement {
     
     return html`
       <div>
-        ${myObj.text} // "foo"
+        ${myObj.text}
         <button @click=${() => this._updateObj()}>Update</button>
       </div>
     `;
