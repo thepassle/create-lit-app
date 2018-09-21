@@ -1,6 +1,6 @@
 import { html } from '@polymer/lit-element';
-import { POLYMER_PINK } from './Colors';
 
+const POLYMER_PINK = '#fc4482';
 const SPACER = 5;
 
 export const AppStyles = html`
@@ -25,14 +25,6 @@ export const AppStyles = html`
 
   .app-title {
     font-size: 1.5em;
-  }
-
-  .app-intro {
-    font-size: large;
-  }
-
-  .app-links {
-    margin-top: ${ SPACER * 4 }px;
   }
 
   .app-gh {

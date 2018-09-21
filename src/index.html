@@ -16,21 +16,11 @@
         padding: 0;
       }
     </style>
-
-    <script>
-      window.process = { env: { NODE_ENV: 'production' } };
-    </script>
-
-    <script>if (!window.customElements) { document.write('<!--'); }</script>
+    <script src="./vendor/webcomponents-loader.js"></script>
     <script src="./vendor/custom-elements-es5-adapter.js"></script>
-    <!--! DO NOT REMOVE THIS COMMENT, WE NEED ITS CLOSING MARKER -->
-
-  </head>
-  <body>
-    <lit-app/>
     <script src="./vendor/fetch.js"></script>
     <script src="./vendor/polyfill.min.js"></script>
-    <script src="./vendor/babel-helpers.min.js"></script>
-    <script src="./vendor/regenerator-runtime.min.js"></script>
-    <script src="./vendor/webcomponents-loader.js"></script>
+  </head>
+  <body>
+    <lit-app></lit-app>
 </html>

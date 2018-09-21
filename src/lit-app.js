@@ -1,26 +1,8 @@
 import { LitElement, html } from '@polymer/lit-element/';
-
-import { Router } from '@vaadin/router';
-
-import './components/home-page.js';
-import './components/books-demo.js';
-import './components/redux-demo.js';
-import './components/not-found.js';
-
-import { AppStyles } from './styles/AppStyles';
+import { AppStyles } from './AppStyles';
+import './hello-world.js';
 
 class LitApp extends LitElement {
-	firstUpdated(){
-		const router = new Router(this.shadowRoot.querySelector('#outlet'));
-
-		router.setRoutes([
-			{path: '/', component: 'home-page'},
-			{path: '/books', component: 'books-demo'},
-			{path: '/redux', component: 'redux-demo'},
-			{path: '(.*)', component: 'not-found'}
-		]);
-	}
-
 	render() {
 		return html`
 			${AppStyles}
@@ -30,13 +12,9 @@ class LitApp extends LitElement {
 					<h1 class="app-title">Welcome to LitHTML</h1>
 				</header>
 
-				<div class="app-links">
-					<a href="/">Home</a>
-					<a href="/books">Books</a>
-					<a href="/redux">Redux</a>
+				<div class="app-main">
+					<hello-world .greeting=${'Welcome'}></hello-world>
 				</div>
-
-				<div id="outlet"></div>
 
 				<a href="https://github.com/thepassle/create-lit-app">
 					<img src="../assets/github.svg" class="app-gh" alt />

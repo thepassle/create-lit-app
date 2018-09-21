@@ -7,7 +7,7 @@
 
 [![Built with create-lit-app](https://img.shields.io/badge/built%20with-create--lit--app-blue.svg)](https://github.com/thepassle/create-lit-app) [![Build Status](https://travis-ci.org/thepassle/create-lit-app.svg?branch=master)](https://travis-ci.org/thepassle/create-lit-app) [![Mentioned in Awesome lit-html>](https://awesome.re/mentioned-badge.svg)](https://github.com/web-padawan/awesome-lit-html)
 
-![Lit App Screenshot](https://i.imgur.com/CaDLkto.png)
+![Lit App Screenshot](https://i.imgur.com/3RtTwbi.jpg)
 
 Demo:
 https://create-lit-app.herokuapp.com/
@@ -21,17 +21,13 @@ https://create-lit-app.herokuapp.com/
 You don’t need to install or configure tools like Webpack or Babel.
 They are preconfigured so that you can focus on the code.
 
-Clone/fork this repo or install the CLI if you want to get started quickly building a fullstack LitHTML app with:
+Clone/fork the [create-lit-app-advanced repo](https://www.github.com/thepassle/create-lit-app-advanced)
+ or install the CLI if you want to get started quickly building a fullstack LitHTML app with:
 
 * Routing
 * Express api
 * Redux
 * Build with webpack
-
-
-Do you **not** want to use webpack, and just use the Polymer CLI tools? Check out [this branch](https://github.com/thepassle/create-lit-app/tree/no-webpack)
-
-
 
 
 ## Table of Contents
@@ -41,23 +37,28 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
   - [npm test](#npm-test)
   - [npm build](#npm-build)
 - [Folder Structure](#folder-structure)
+- [Redux](#redux)
+- [Routing](#routing)
+- [Adding an api](#adding-an-api)
 - [Usage](#usage)
-	- [Basic template](#basic-template)
-	- [Passing props](#passing-props)
-	- [Event handlers](#event-handlers)
-	- [Conditional rendering](#conditional-rendering)
-	- [Setting default values](#setting-default-values)
-	- [Arrays](#arrays)
-	- [Updating arrays and objects](#updating-arrays-and-objects)
-	- [Attributes](#attributes)
-	- [Reflecting props to attributes](#reflecting-props-to-attributes)
-	- [Adding styles](#adding-styles)
-	- [Querying dom](#querying-dom)
-	- [Making api calls](#making-api-calls)
-	- [Using directives](#using-directives)
-	- [Installing components](#installing-components)
-	- [Upwards data flow](#upwards-data-flow)
-	- [Slotted components](#slotted-components)
+  - [Basic template](#basic-template)
+  - [Passing props](#passing-props)
+  - [Event handlers](#event-handlers)
+  - [Conditional rendering](#conditional-rendering)
+  - [Setting default values](#setting-default-values)
+  - [Arrays](#arrays)
+  - [Updating arrays and objects](#updating-arrays-and-objects)
+  - [Attributes](#attributes)
+  - [Reflecting props to attributes](#reflecting-props-to-attributes)
+  - [Adding styles](#adding-styles)
+  - [Querying dom](#querying-dom)
+  - [Making api calls](#making-api-calls)
+  - [Using directives](#using-directives)
+    - [until directive](#until-directive)
+    - [unsafehtml directive](#unsafehtml-directive)
+  - [Installing components](#installing-components)
+  - [Upwards data flow](#upwards-data-flow)
+  - [Slotted components](#slotted-components)
 - [Lifecycle](#lifecycle)
 - [Cheatsheet](#cheatsheet)
 - [Polyfills](#polyfills)
@@ -65,17 +66,18 @@ Do you **not** want to use webpack, and just use the Polymer CLI tools? Check ou
 - [Testing your components](#testing-your-components)
 - [Add LitElement to a website](#add-litelement-to-a-website)
 - [Frequently asked questions](#frequently-asked-questions)
-	- [How does lit-html render?](#how-does-lit-html-render)
-	- [How does LitElement know when to rerender?](#how-does-litelement-know-when-to-rerender)
-	- [Why is my component not rerendering?](#why-is-my-component-not-rerendering)
-	- [Difference with VDOM?](#difference-with-vdom)
-	- [What is shadow dom?](#what-is-shadow-dom)
-	- [Accessibility and shadow dom?](#accessibility-and-shadow-dom)
-	- [Can I use jQuery?](#can-i-use-jquery)
+  - [How does lit-html render?](#how-does-lit-html-render)
+  - [How does LitElement know when to rerender?](#how-does-litelement-know-when-to-rerender)
+  - [Why is my component not rerendering?](#why-is-my-component-not-rerendering)
+  - [Difference with VDOM?](#difference-with-vdom)
+  - [What is shadow dom?](#what-is-shadow-dom)
+  - [Accessibility and shadow dom?](#accessibility-and-shadow-dom)
+  - [Can I use jQuery?](#can-i-use-jquery)
 - [Browser support](#browser-support)
 - [Contributing](#contributing)
 - [Credits](#credits)
 - [Further reading](#further-reading)
+- [Acknowledgements](#acknowledgements)
 
 ## Quickstart
 
@@ -120,49 +122,54 @@ After creation, your project should look like this:
 
 ```
 create-lit-app/
-	README.md
-	dist/
-	node_modules/
-	routes/
-		api.js
-	src/
-		actions/
-			count.js
-		assets/
-			favicon.ico
-			github.svg
-			logo.svg
-		components/
-			books-demo.js
-			home-page.js
-			not-found.js
-			redux-demo.js
-		reducers/
-			count.js
-		styles/
-			AppStyles.js
-			Colors.js
-		vendor/
-		index.html
-		lit-app.js
-		store.js
-	test/
-		books-demo.html
-		home-page.html
-		index.html
-		redux-demo.html
-	utils/
-	.babelrc
-	.eslintignore
-	.eslintrc.json
-	.gitignore
-	package-lock.json
-	package.json
-	polymer.json
-	README.md
-	server.js
-	webpack.config.js
+  README.md
+  dist/
+  node_modules/
+  src/
+    assets/
+      favicon.ico
+      github.svg
+      logo.svg
+    hello-world.js
+    AppStyles.js
+    index.html
+    lit-app.js
+    store.js
+  test/
+    hello-world.html
+    index.html
+  .babelrc
+  .eslintignore
+  package-lock.json
+  package.json
+  polymer.json
+  README.md
+  server.js
+  webpack.config.js
 ```
+
+## Redux
+
+Check out the [create-lit-app-advanced repo](https://stackblitz.com/edit/create-lit-app) for a full example.
+
+## Routing
+
+Create-lit-app-advanced uses [Vaadin Router](https://github.com/vaadin/vaadin-router) for its routing.
+Check out the [create-lit-app-advanced repo](https://stackblitz.com/edit/create-lit-app) for a full example.
+
+## Adding an api
+
+You can edit the `server.js` file and start adding endpoints straight away. Add the follow to the devServer section in `webpack.config.js`:
+
+```js
+proxy: {
+  '/api': {
+    target: 'http://localhost:8000/',
+    secure: false
+  },
+```
+
+Check out the [create-lit-app-advanced repo](https://stackblitz.com/edit/create-lit-app) for a full example.
 
 ## Usage
 
@@ -703,7 +710,9 @@ Alternatively you can use a [directive](#using-directives).
 
 ### Using directives
 
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-directives)
+#### until directive
+
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-directives-until)
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
@@ -720,6 +729,33 @@ class DirectivesDemo extends LitElement {
               html`<span>Loading...</span>`)
           }
         </p>
+      `;
+  }
+}
+
+customElements.define('directives-demo', DirectivesDemo);
+```
+
+#### unsafeHTML directive
+
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-directives-unsafehtml?file=directives-demo.js)
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
+
+const externalTemplate = "<h1>Hello universe!</h1>";
+
+class DirectivesDemo extends LitElement {
+  render() {    
+    return html`
+        <div>
+          <!-- wrong: -->
+          ${externalTemplate}
+
+          <!-- right: -->
+          ${unsafeHTML(externalTemplate)}
+        </div>
       `;
   }
 }
@@ -776,7 +812,7 @@ class BookList extends LitElement {
     this.books = [...this.books, event.detail];
   }
 
-  render() {		
+  render() {    
     const { books } = this;
 
     return html`
@@ -809,7 +845,7 @@ class AddBookComponent extends LitElement {
     this.dispatchEvent(new CustomEvent('book-added', { detail: { author, title } }));
   }
 
-  render() {	
+  render() {  
     return html`
       author: <input id="author"></input>
       title: <input id="title"></input>
@@ -857,7 +893,7 @@ customElements.define('container-el', ContainerEl);
 import { LitElement, html } from '@polymer/lit-element/';
 
 class CardElement extends LitElement {
-  render() {		
+  render() {    
     return html`
       <div class="card-wrapper">
         <slot name="title"></slot>
@@ -910,7 +946,7 @@ customElements.define('my-app', MyApp);
 import { LitElement, html } from '@polymer/lit-element/';
 
 class CardElement extends LitElement {
-  render() {		
+  render() {    
     return html`
       <div class="card-wrapper">
         <slot name="book-details"></slot>
@@ -1139,13 +1175,12 @@ html`<button @click=${(e) => console.log('clicked')}>Click Me</button>`
 Create-lit-app includes the following [polyfills](https://en.wikipedia.org/wiki/Polyfill):
 
 * [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) via [`promise`](https://github.com/then/promise).
+
 * [`fetch()`](https://developer.mozilla.org/en/docs/Web/API/Fetch_API) via [`whatwg-fetch`](https://github.com/github/fetch).
-* [`Web Components`](https://github.com/webcomponents/webcomponentsjs) via [`webcomponentsjs`](https://github.com/webcomponents/webcomponentsjs).
+
+* [`Web Components`](https://github.com/webcomponents/webcomponentsjs) via [`webcomponentsjs`](https://github.com/webcomponents/webcomponentsjs). This loader performs client side feature detection and requests only needed polyfills. E.g., for IE11 it will load webcomponents-lite.js which includes full list of polyfills. But for Edge webcomponents-hi-ce-sd.js which contains polyfills for HTML Import, Custom Element and ShadowDOM.
+
 * [`custom-elements-es5-adapter.js`]() According to the spec, only ES6 classes (https://html.spec.whatwg.org/multipage/scripting.html#custom-element-conformance) may be passed to the native customElements.define API. For best performnace, ES6 should be served to browsers that support it, and ES5 code should be serve to those that don't. Since this may not always be possible, it may make sense to compile and serve ES5 to all browsers. However, if you do so, ES5-style custom element classes will now not work on browsers with native Custom Elements because ES5-style classes cannot properly extend ES6 classes, like HTMLElement. As a workaround, if your project has been compiled to ES5, load custom-elements-es5-adapter.js before defining Custom Elements. This adapter will automatically wrap ES5. *The adapter must NOT be compiled.*
-
-* [`babel-helpers.min.js`]() For IE11 and Edge to support such a ES6 features as Symbol()
-* [`webcomponents-loader.js`]() This loader performs client side feature detection and requests only needed polyfills. E.g., for IE11 it will load webcomponents-lite.js which includes full list of polyfills. But for Edge webcomponents-hi-ce-sd.js which contains polyfills for HTML Import, Custom Element and ShadowDOM.
-
 
 ## Installing a Dependency
 
@@ -1407,3 +1442,8 @@ We'd love to have your helping hand on create-lit-app! Feel free to create a pul
 ## Further reading
 * [Redux](https://redux.js.org/introduction)
 * [Making a fullstack app with lit](https://medium.com/@pascalschilp/making-a-fullstack-crud-app-with-lithtml-redux-express-and-webpack-fe7e5cf8b3ef)
+
+## Acknowledgements
+
+* Owen Buckley of [Project Evergreen](https://projectevergreen.github.io/)
+* [Web-padawan](https://github.com/web-padawan)
