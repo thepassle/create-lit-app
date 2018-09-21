@@ -36,8 +36,7 @@
   "scripts": {
     "build": "webpack --env production",
     "lint": "eslint ./src/*.js",
-    "greeting": "echo \"\n\nRun: \\033[34mnode server.js \\033[39mto see your production build.\nRun: \\033[34mnpm start \\033[39mfor development.\nRun: \\033[34mnpm test \\033[39mto run tests.\nRun: \\033[34mnpm run build \\033[39mto build your project.\n\n\\033[34m+------------------+\n\\033[34m|  create-lit-app  |\n\\033[34m+------------------+\n\n\\033[34mHappy hacking!\n\n\\033[39m\"",
-    "postinstall": "npm run build && npm run --silent greeting",
+    "postinstall": "npm run build",
     "start": "webpack-dev-server --env development",
     "test": "polymer test --local chrome"
   }
