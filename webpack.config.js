@@ -65,6 +65,10 @@ const commonConfig = merge([
     module: {
       rules: [
         {
+          test: /\.css$/,
+          use: ['css-to-string-loader', 'css-loader', 'postcss-loader']
+        },
+        {
           test: /\.js$/,
           use: [
             {

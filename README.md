@@ -134,7 +134,6 @@ create-lit-app/
     AppStyles.js
     index.html
     lit-app.js
-    store.js
   test/
     hello-world.html
     index.html
