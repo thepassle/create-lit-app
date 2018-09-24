@@ -5,6 +5,7 @@ const merge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const postcssPresetEnv = require('postcss-preset-env');
 
 const ENV = process.argv.find(arg => arg.includes('production'))
   ? 'production'
@@ -66,7 +67,15 @@ const commonConfig = merge([
       rules: [
         {
           test: /\.css$/,
-          use: ['css-to-string-loader', 'css-loader', 'postcss-loader']
+          use: ['css-to-string-loader', 'css-loader', 
+            { loader: 'postcss-loader', options: {
+                ident: 'postcss',
+                plugins: () => [
+                  postcssPresetEnv()
+                ]
+              } 
+            }
+          ]
         },
         {
           test: /\.js$/,

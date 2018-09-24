@@ -131,7 +131,7 @@ create-lit-app/
       github.svg
       logo.svg
     hello-world.js
-    AppStyles.js
+    lit-app-styles.css
     index.html
     lit-app.js
   test/
