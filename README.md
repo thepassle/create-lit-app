@@ -122,7 +122,6 @@ After creation, your project should look like this:
 
 ```
 create-lit-app/
-  README.md
   dist/
   node_modules/
   src/
@@ -141,7 +140,6 @@ create-lit-app/
   .eslintignore
   package-lock.json
   package.json
-  polymer.json
   README.md
   server.js
   webpack.config.js
@@ -207,7 +205,7 @@ customElements.define('basic-demo', BasicDemo);
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
-import 'book-list-item.js';
+import './book-list-item.js';
 
 class BookList extends LitElement {
   static get properties() {
@@ -473,7 +471,7 @@ customElements.define('updating-demo', UpdatingDemo);
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
-import { AppStyles } from 'styles.js';
+import { AppStyles } from './styles.js';
 
 class AttributesDemo extends LitElement {
   static get properties() {
@@ -582,7 +580,7 @@ customElements.define('my-button', MyButton);
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
-import { AppStyles } from 'styles.js';
+import { AppStyles } from './styles.js';
 
 class StylesDemo extends LitElement {
   render() {    
@@ -793,7 +791,7 @@ customElements.define('installing-demo', InstallingDemo);
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
-import 'add-book-component.js';
+import './add-book-component.js';
 
 class BookList extends LitElement {
   static get properties() {
@@ -869,7 +867,7 @@ customElements.define('add-book-component', AddBookComponent);
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
-import 'card-element.js';
+import './card-element.js';
 
 class ContainerEl extends LitElement {
   render() {
@@ -911,8 +909,8 @@ customElements.define('card-element', CardElement);
 
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
-import 'card-element.js';
-import 'book-item.js';
+import './card-element.js';
+import './book-item.js';
 
 class MyApp extends LitElement {
   static get properties() {
@@ -1037,7 +1035,7 @@ Example:
 ```js
 import { LitElement, html } from '@polymer/lit-element/';
 
-import 'lifecycle-demo.js';
+import './lifecycle-demo.js';
 
 class myApp extends LitElement {
   static get properties() {
@@ -1261,9 +1259,10 @@ There will be no complicated tools or install requirements — **to complete thi
   <!-- Works only on browsers that support Javascript modules like
        Chrome, Safari, Firefox 60, Edge 17 -->
   <script type="module">
-    import { LitElement, html } from 'https://unpkg.com/@polymer/lit-element@0.6.0-dev.6/lit-element.js?module';
+    import {LitElement, html} from 'https://unpkg.com/@polymer/lit-element@latest/lit-element.js?module';
     
     class MyElement extends LitElement {
+
       static get properties() { 
         return { 
           mood: String 
@@ -1274,7 +1273,8 @@ There will be no complicated tools or install requirements — **to complete thi
         const { mood } = this;
         return html`<style> .mood { color: green; } </style>
           Web Components are <span class="mood">${mood}</span>!`;
-      }      
+      }
+      
     }
 
     customElements.define('my-element', MyElement);
