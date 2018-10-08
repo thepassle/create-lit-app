@@ -39,6 +39,7 @@ Clone/fork the [create-lit-app-advanced repo](https://www.github.com/thepassle/c
 - [Folder Structure](#folder-structure)
 - [Redux](#redux)
 - [Routing](#routing)
+- [Decorators](#decorators)
 - [Adding an api](#adding-an-api)
 - [Usage](#usage)
   - [Basic template](#basic-template)
@@ -65,14 +66,17 @@ Clone/fork the [create-lit-app-advanced repo](https://www.github.com/thepassle/c
 - [Installing a dependency](#installing-a-dependency)
 - [Testing your components](#testing-your-components)
 - [Add LitElement to a website](#add-litelement-to-a-website)
+- [Extensions](#extensions)
 - [Frequently asked questions](#frequently-asked-questions)
   - [How does lit-html render?](#how-does-lit-html-render)
   - [How does LitElement know when to rerender?](#how-does-litelement-know-when-to-rerender)
   - [Why is my component not rerendering?](#why-is-my-component-not-rerendering)
+  - [Why are there empty html comments in my markup?](#why-are-there-empty-html-comments-in-my-markup)
   - [Difference with VDOM?](#difference-with-vdom)
+  - [Whats the difference between map and repeat?](#whats-the-difference-between-map-and-repeat)
   - [What is shadow dom?](#what-is-shadow-dom)
   - [Accessibility and shadow dom?](#accessibility-and-shadow-dom)
-  - [Can I use jQuery?](#can-i-use-jquery)
+  - [Can I use x library?](#can-i-use-x-library)
 - [Browser support](#browser-support)
 - [Contributing](#contributing)
 - [Credits](#credits)
@@ -154,9 +158,46 @@ Check out the [create-lit-app-advanced repo](https://stackblitz.com/edit/create-
 Create-lit-app-advanced uses [Vaadin Router](https://github.com/vaadin/vaadin-router) for its routing.
 Check out the [create-lit-app-advanced repo](https://stackblitz.com/edit/create-lit-app) for a full example.
 
+## Decorators
+
+Instead of using the `static get properties()` way of setting properties, you may also use [decorators](https://github.com/tc39/proposal-decorators#decorators). Decorators require the following two babel plugins that live in your `.babelrc` file.
+
+`.babelrc`:
+
+```js
+[
+  "@babel/plugin-proposal-decorators",
+  { "legacy": true }
+],
+[
+  "@babel/plugin-proposal-class-properties",
+  { "loose": true }
+]
+```
+
+Here's an example on how to use decorators:
+
+```js
+import { LitElement, html, property } from '@polymer/lit-element/';
+
+class DemoElement extends LitElement {
+  
+  @property({type: String})
+  foo = 'bar';
+
+  render() {
+    return html`
+      <h1>${this.foo}</h1>
+    `;
+  }
+}
+
+customElements.define('demo-element', DemoElement);
+```
+
 ## Adding an api
 
-You can edit the `server.js` file and start adding endpoints straight away. Add the follow to the devServer section in `webpack.config.js`:
+You can edit the `server.js` file and start adding endpoints straight away. Add the following to the devServer section in `webpack.config.js`:
 
 ```js
 proxy: {
@@ -1286,6 +1327,13 @@ There will be no complicated tools or install requirements — **to complete thi
 </html>
 ```
 
+## Extensions
+
+These are some extensions made by the community on top of create-lit-app:
+
+* [create-lit-app-auth](https://github.com/sheideman/Create-Lit-App-Auth-Starter) - Get started with authentication using [jwt](https://jwt.io/), passportjs, and mongo.
+
+
 ## Frequently asked questions
 
 
@@ -1396,10 +1444,62 @@ class UpdatingDemo extends LitElement {
 customElements.define('updating-demo', UpdatingDemo);
 ```
 
+### Why are there empty html comments in my markup?
+
+Lit-html uses them to keep track of its expression/parts locations, so it can update efficiently, consider the following example:
+
+code:
+
+```js
+class DemoEl extends LitElement {
+  static get properties() {
+    return {
+      myString: String
+    };
+  }
+  constructor(){
+    super();
+    this.myString = 'bar';
+  }
+
+  render() {
+    const { myString } = this;
+    return html`
+      <h1>foo</h1>
+      <h1>${myString}</h1>`; // will wrap `${myString}` with <!---> 
+  }
+}
+```
+
+output:
+
+```html
+<demo-el>
+  #shadow-root (open)
+    <!---->
+    <h1>foo</h1>
+    <h1>
+      <!---->
+      "bar"
+      <!---->
+    </h1>
+    <!---->
+</demo-el>
+```
+
 ### Difference with VDOM?
 VDOM implementations keep a separate JavaScript structure representing the DOM structure in the browser. For all the changes to the structure the VDOM implementation will perform a diffing operation and will perform updates to the DOM itself.
 
 While this method is effective, it does mean a lot of excessive processing is done. Lit-html leverages the ECMAScript ES6 tagged template literals feature to use native browser rendering engine implementations to perform the same task. 
+
+### Whats the difference between map and repeat?
+
+If you expect to the order of elements to change (swapping position of elements, deleting elements within the array) use `repeat`. If your array length never changes, or if you only append to to it use `map`.
+If you have an array `[a,b,c]`, `map` will render 3 nodes. When when you change the array to `[b,a,c]` the dom nodes stay in the same position but the data passed to the nodes changes
+
+While `repeat` will swap the nodes along with the data. this can be very useful if you modify dom nodes which isn't expressed in any of your data.
+
+TL;DR use map for very small lists and very small templates. Iterating over a small hardcoded list of options to build a form for example.
 
 ### What is shadow dom?
 
@@ -1410,8 +1510,10 @@ Screenreaders have no difficulty with piercing shadow dom. From the Polymer FAQ:
 
 > “A common misconception is that the Shadow DOM doesn’t play nicely with assistive technologies. The reality is that the Shadow DOM can in fact be traversed and any node with Shadow DOM has a shadowRoot property which points to its shadow document. Most assistive technologies hook directly into the browser’s rendering tree, so they just see the fully composed tree.”
 
-### Can I use jQuery?
-jQuery plugins don’t work inside of Shadow DOM because typically they try to query for something starting at the document level and the shadow root blocks this.
+### Can I use x library?
+Lots of libraries using global API like document.querySelector and relying on global CSS would be broken by Shadow DOM. Libraries themselves should be updated to work with the new concepts, where possible. Webcomponents are still in early stages of adaptation, lots of libraries would actually make great webcomponents, so if you're interested in using one of your favourite libraries, please consider contributing.
+
+Some libraries could potentially still work by querying the shadowroot of an element.
 
 Read more about it in [this](https://medium.com/dev-channel/dont-use-jquery-plugins-with-shadow-dom-e161f1891511) medium post by [Rob Dodson](https://twitter.com/rob_dodson)
 
@@ -1435,14 +1537,16 @@ We'd love to have your helping hand on create-lit-app! Feel free to create a pul
 * [Vaadin Router](https://github.com/vaadin/vaadin-router)
 * [Polymer3-webpack-starter](https://github.com/web-padawan/polymer3-webpack-starter)
 * [Polymer PWA starter kit](https://github.com/Polymer/pwa-starter-kit)
-* [Moving from Polymer to lit-html](https://43081j.com/2018/08/future-of-polymer)
 * [Material components](https://github.com/material-components/material-components-web-components)
 
 ## Further reading
 * [Redux](https://redux.js.org/introduction)
 * [Making a fullstack app with lit](https://medium.com/@pascalschilp/making-a-fullstack-crud-app-with-lithtml-redux-express-and-webpack-fe7e5cf8b3ef)
+* [Moving from Polymer to lit-html](https://43081j.com/2018/08/future-of-polymer)
+* [LitElement To Do app](https://medium.com/@westbrook/litelement-to-do-app-1e08a31707a4)
 
 ## Acknowledgements
 
 * Owen Buckley of [Project Evergreen](https://projectevergreen.github.io/)
 * [Web-padawan](https://github.com/web-padawan)
+* [Lars den Bakker](https://github.com/LarsDenBakker)
