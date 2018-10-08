@@ -57,6 +57,8 @@ Clone/fork the [create-lit-app-advanced repo](https://www.github.com/thepassle/c
   - [Using directives](#using-directives)
     - [until directive](#until-directive)
     - [unsafehtml directive](#unsafehtml-directive)
+    - [classMap directive](#classMap-directive)
+    - [styleMap directive](#styleMap-directive)
   - [Installing components](#installing-components)
   - [Upwards data flow](#upwards-data-flow)
   - [Slotted components](#slotted-components)
@@ -793,6 +795,87 @@ class DirectivesDemo extends LitElement {
 
           <!-- right: -->
           ${unsafeHTML(externalTemplate)}
+        </div>
+      `;
+  }
+}
+
+customElements.define('directives-demo', DirectivesDemo);
+```
+
+#### classMap directive
+
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-directives-classmap?file=directives-demo.js)
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+import { classMap } from 'lit-html/directives/classMap';
+
+class DirectivesDemo extends LitElement {
+  static get properties() {
+    return {
+      someClass: Boolean
+    }
+  }
+
+  constructor() {
+    super();
+    this.someClass = true;
+  }
+
+  render() {    
+    const { someClass } = this;
+    return html`
+        <style>
+          .someClass {
+            color: red;
+          }
+        </style>
+        <div class="${classMap({someClass})}">
+          Hello universe!
+        </div>
+      `;
+  }
+}
+
+customElements.define('directives-demo', DirectivesDemo);
+```
+
+#### styleMap directive
+
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-directives-stylemap?file=directives-demo.js)
+
+```js
+
+import { LitElement, html } from '@polymer/lit-element/';
+import { styleMap } from 'lit-html/directives/styleMap';
+
+class DirectivesDemo extends LitElement {
+  static get properties() {
+    return {
+      bgColor: String
+    }
+  }
+
+  constructor() {
+    super();
+    this.bgColor = 'red';
+  }
+
+  render() {    
+    const { bgColor } = this;
+
+    const styles = {
+      backgroundColor: 'green',
+      color: 'blue'
+    }
+
+    return html`
+        <div style="${styleMap({backgroundColor: bgColor})}">
+          Foo
+        </div>
+        <div style="${styleMap(styles)}">
+          Bar
         </div>
       `;
   }
