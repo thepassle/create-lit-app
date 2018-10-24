@@ -62,6 +62,7 @@ Clone/fork the [create-lit-app-advanced repo](https://www.github.com/thepassle/c
   - [Installing components](#installing-components)
   - [Upwards data flow](#upwards-data-flow)
   - [Slotted components](#slotted-components)
+  - [Light dom](#light-dom)
 - [Lifecycle](#lifecycle)
 - [Cheatsheet](#cheatsheet)
 - [Polyfills](#polyfills)
@@ -1102,6 +1103,51 @@ class BookItem extends LitElement {
 customElements.define('book-item', BookItem);
 ```
 
+### Light dom
+
+[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-light-dom)
+
+`light-dom.js`:
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+class LightDom extends LitElement {
+
+  createRenderRoot() {
+    return this;
+  }
+
+  render() {    
+    return html`
+        <div>
+          I am in the light DOM!
+        </div>
+      `;
+  }
+}
+
+customElements.define('light-dom', LightDom);
+```
+
+`shadow-dom.js`:
+
+```js
+import { LitElement, html } from '@polymer/lit-element/';
+
+class ShadowDom extends LitElement {
+  render() {    
+    return html`
+        <div>
+          I am in the shadow DOM!
+        </div>
+      `;
+  }
+}
+
+customElements.define('shadow-dom', ShadowDom);
+```
+
 ## Lifecycle
 
   * `render()` (protected): Implement to describe the element's DOM using `lit-html`. Ideally,
@@ -1148,7 +1194,7 @@ customElements.define('book-item', BookItem);
   * `createRenderRoot()` (protected): Implement to customize where the
   element's template is rendered by returning an element into which to
   render. By default this creates a shadowRoot for the element.
-  To render into the element's childNodes, return `this`.
+  To render into the element's childNodes, return `this`. See an example [here](#light-dom)
 
 Example:
 
