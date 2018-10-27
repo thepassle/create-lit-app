@@ -5,7 +5,6 @@ const merge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const postcssPresetEnv = require('postcss-preset-env');
 
 const ENV = process.argv.find(arg => arg.includes('production'))
   ? 'production'
@@ -58,38 +57,18 @@ const polyfills = [
 
 const commonConfig = merge([
   {
-    entry: './src/lit-app.js',
+    resolve: {
+      extensions: ['.ts', '.js']
+    },
+    entry: './src/lit-app.ts',
     output: {
       path: OUTPUT_PATH,
       filename: '[name].[chunkhash:8].js'
     },
     module: {
       rules: [
-        {
-          test: /\.css$/,
-          use: ['css-to-string-loader', 'css-loader', 
-            { loader: 'postcss-loader', options: {
-                ident: 'postcss',
-                plugins: () => [
-                  postcssPresetEnv()
-                ]
-              } 
-            }
-          ]
-        },
-        {
-          test: /\.js$/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                babelrc: true,
-                extends: join(__dirname + '/.babelrc'),
-                cacheDirectory: true,
-                envName: ENV
-              }
-            }
-          ]
+        { 
+          test: /\.ts(x?)$/, loader: 'ts-loader', exclude: /node_modules/
         }
       ]
     }
