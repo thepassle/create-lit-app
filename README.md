@@ -1460,7 +1460,9 @@ There will be no complicated tools or install requirements — **to complete thi
 
 These are some extensions made by the community on top of create-lit-app:
 
-* [create-lit-app-auth](https://github.com/sheideman/Create-Lit-App-Auth-Starter) - Get started with authentication using [jwt](https://jwt.io/), passportjs, and mongo.
+* [create-lit-app-typescript](https://github.com/thepassle/create-lit-app/tree/typescript) - Get started with typescript.
+* [create-lit-app-advanced](https://github.com/thepassle/create-lit-app-advanced) - Get started with redux, routing, and an express API.
+* [create-lit-app-auth](https://github.com/sheideman/Create-Lit-App-Auth-Starter) - Get started with authentication using [jwt](https://jwt.io/), passportjs, and mongo. By [Steve Heideman](https://github.com/sheideman).
 
 
 ## Frequently asked questions
