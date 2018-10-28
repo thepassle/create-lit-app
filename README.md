@@ -495,12 +495,12 @@ class UpdatingDemo extends LitElement {
             return html`<h1>${item.id}</h1>`;
           })
         }
-        <button @click=${() => this._updateArray()}>Update array</button>
+        <button @click=${this._updateArray}>Update array</button>
 
         <br><br>
 
         <h1>${myObj.id}: ${myObj.text}</h1>
-        <button @click=${() => this._updateObj()}>Update object</button>
+        <button @click=${this._updateObj}>Update object</button>
       </div>
     `;
   }
@@ -972,7 +972,7 @@ class AddBookComponent extends LitElement {
       author: <input id="author"></input>
       title: <input id="title"></input>
       
-      <button @click=${() => this._submitBook()}>
+      <button @click=${this._submitBook}>
         add a book!
       </button>
     `;
@@ -1292,7 +1292,7 @@ class LifecycleDemo extends LitElement {
 
     return html`
       <!-- Adding an item will cause myArr to change, the property change will get picked up and trigger an update -->
-      <button @click=${() => this._addItem()}>add item</button>
+      <button @click=${this._addItem}>add item</button>
 
       ${myArr.map((item) => {
         return html`<li>${item}</li>`;
@@ -1367,50 +1367,39 @@ This works for any library, not just `axios`.
 
 ## Testing your components
 
-Create-lit-app uses [web components tester](https://www.npmjs.com/package/web-component-tester) for it's testing, but you can also eject and use something like Karma. You can start the test runner with `npm test`, and edit test files in the `test/` folder. Here's an example of a test:
+Create-lit-app uses [karma](https://www.npmjs.com/package/karma) for testing. You can start the test runner with `npm test`, and edit test files in the `test/` folder. Here's an example of a test:
 
-`test/home-page.html`:
+`test/hello-world.spec.js`:
 
-```html
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <title>home-page</title>
+```js
+import { html, render } from 'lit-html';
+import { expect } from 'chai';
 
-  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-  <script src="../node_modules/wct-browser-legacy/browser.js"></script>
+import '../src/hello-world';
 
-  <!-- Import the element to test -->
-  <script type="module" src="../src/components/home-page.js"></script>
+describe('hello-world', () => {
+  let element;
 
-</head>
-<body>
+  const fixture = html`
+    <hello-world .greeting=${'Welcome'}></hello-world>
+  `;
 
-  <test-fixture id="basic">
-    <template>
-       <home-page></home-page>
-    </template>
-  </test-fixture>
+  beforeEach(async () => {
+    render(fixture, document.body);
+    element = document.body.firstElementChild;
+    await element.updateComplete;
+  });
 
-  <script>
-    suite('home-page tests', () => {
-      var home;
+  afterEach(() => {
+    element.remove();
+  });
 
-      setup(async () => {
-        home = fixture('basic');
+  it('should render a welcome message', () => {
+    const title = element.shadowRoot.querySelector('h1');
+    expect(title.innerText).to.equal('Welcome');
+  });
+});
 
-        // note how we leverage the updateComplete lifecycle method to wait until our component is ready
-        await home.updateComplete;
-      });
-
-      test('homepage shows the welcome message', () => {
-        var title = home.shadowRoot.querySelector('h1').textContent;
-        assert.equal(title, "Welcome");
-      });
-    });
-  </script>
-</body>
-</html>
 ```
 
 ## Add LitElement to a website
@@ -1564,7 +1553,7 @@ class UpdatingDemo extends LitElement {
     return html`
       <div>
         ${myObj.text}
-        <button @click=${() => this._updateObj()}>Update</button>
+        <button @click=${this._updateObj}>Update</button>
       </div>
     `;
   }

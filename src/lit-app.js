@@ -1,5 +1,5 @@
 import { LitElement, html } from '@polymer/lit-element/';
-import styles from './lit-app-styles.css';
+import { styles } from './lit-app-styles.js';
 import './hello-world.js';
 
 class LitApp extends LitElement {
