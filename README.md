@@ -41,28 +41,29 @@ Clone/fork the [create-lit-app-advanced repo](https://www.github.com/thepassle/c
 - [Routing](#routing)
 - [Decorators](#decorators)
 - [Adding an api](#adding-an-api)
-- [Usage](#usage)
-  - [Basic template](#basic-template)
-  - [Passing props](#passing-props)
-  - [Event handlers](#event-handlers)
-  - [Conditional rendering](#conditional-rendering)
-  - [Setting default values](#setting-default-values)
-  - [Arrays](#arrays)
+- [Usage](https://stackblitz.com/@thepassle)
+  - [Basic template](https://stackblitz.com/edit/create-lit-app-basic-template)
+  - [Passing props](https://stackblitz.com/edit/create-lit-app-passing-props)
+  - [Event handlers](https://stackblitz.com/edit/create-lit-app-event-handlers)
+  - [Conditional rendering](https://stackblitz.com/edit/create-lit-app-conditional-rendering)
+  - [Setting default values](https://stackblitz.com/edit/create-lit-app-default-values)
+  - [Arrays](https://stackblitz.com/edit/create-lit-app-arrays)
   - [Updating arrays and objects](#updating-arrays-and-objects)
-  - [Attributes](#attributes)
-  - [Reflecting props to attributes](#reflecting-props-to-attributes)
-  - [Adding styles](#adding-styles)
-  - [Querying dom](#querying-dom)
-  - [Making api calls](#making-api-calls)
+  - [Attributes](https://stackblitz.com/edit/create-lit-app-updating-objects-arrays)
+  - [Reflecting props to attributes](https://stackblitz.com/edit/create-lit-app-reflect-to-attribute)
+  - [Adding styles](https://stackblitz.com/edit/create-lit-app-styles)
+  - [Querying dom](https://stackblitz.com/edit/create-lit-app-querying-dom)
+  - [Making api calls](https://stackblitz.com/edit/create-lit-app-making-api-calls)
   - [Using directives](#using-directives)
-    - [until directive](#until-directive)
-    - [unsafehtml directive](#unsafehtml-directive)
-    - [classMap directive](#classmap-directive)
-    - [styleMap directive](#stylemap-directive)
-  - [Installing components](#installing-components)
-  - [Upwards data flow](#upwards-data-flow)
-  - [Slotted components](#slotted-components)
-  - [Light dom](#light-dom)
+    - [until directive](https://stackblitz.com/edit/create-lit-app-directives-until)
+    - [unsafehtml directive](https://stackblitz.com/edit/create-lit-app-directives-unsafehtml)
+    - [classMap directive](https://stackblitz.com/edit/create-lit-app-directives-classmap)
+    - [styleMap directive](https://stackblitz.com/edit/create-lit-app-directives-stylemap)
+  - [Installing components](https://stackblitz.com/edit/create-lit-app-installing-components)
+  - [Upwards data flow](https://stackblitz.com/edit/create-lit-app-upwards-data)
+  - [Slotted components](https://stackblitz.com/edit/create-lit-app-slotted)
+  - [Light dom](https://stackblitz.com/edit/create-lit-app-light-dom)
+  - [Typescript](https://stackblitz.com/edit/create-lit-app-typescript)
 - [Lifecycle](#lifecycle)
 - [Cheatsheet](#cheatsheet)
 - [Polyfills](#polyfills)
@@ -214,939 +215,28 @@ Check out the [create-lit-app-advanced repo](https://github.com/thepassle/create
 
 ## Usage
 
-[Create-lit-app on Stackblitz](https://stackblitz.com/edit/create-lit-app)
-
-### Basic template
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-basic-template)
-
-`basic-demo.js`:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-const helloTemplate = (name) => html`<h1>Hello ${name}!</h1>`;
-
-class BasicDemo extends LitElement {
-  render() {    
-    return html`
-      <div>
-        ${helloTemplate("universe")}
-      </div>
-    `;
-  }
-}
-
-customElements.define('basic-demo', BasicDemo);
-```
-
-
-### Passing props
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-passing-props?file=book-list.js)
-
-`book-list.js`:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-import './book-list-item.js';
-
-class BookList extends LitElement {
-  static get properties() {
-    return {
-      books: Array
-    };
-  }
-
-  constructor() {
-    super();
-    this.books = [{ author: 'G.R.R. Martin', title: 'A Game of Thrones' }, { author: 'Tolkien', title: 'Lord of the Rings'}];
-  }
-
-  render() {    
-    const { books } = this;
-
-    return html`
-      <div>
-        ${books.map((book) => {
-          return html`
-            <book-list-item .book=${book}></book-list-item>
-          `;
-        })}
-      </div>
-    `;
-  }
-}
-
-customElements.define('book-list', BookList);
-```
-
-`book-list-item.js`:
-
-```js
-class BookListItem extends LitElement {
-  static get properties() {
-    return {
-      book: Object
-    };
-  }
-
-  render() {    
-    const { book } = this;
-
-    return html`
-      <h1>
-        ${book.author}
-      </h1>
-      <p>
-        ${book.title}
-      </p>
-    `;
-  }
-}
-
-customElements.define('book-list-item', BookListItem);
-```
-
-### Event handlers
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-event-handlers?file=event-handler-demo.js)
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class EventHandlerDemo extends LitElement {
-  _clickHandler(e) {
-    console.log(e);
-  }
-
-  render() {    
-    return html`
-      <button @click="${(e) => this._clickHandler(e)}"></button>
-    `;
-  }
-}
-
-customElements.define('event-handler-demo', EventHandlerDemo);
-```
-
-### Conditional rendering
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-conditional-rendering?file=conditional-demo.js)
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class ConditionalDemo extends LitElement {
-  static get properties() {
-    return {
-      myBool: Boolean
-    };
-  }
-
-  constructor() {
-    super();
-    this.myBool = true;
-  }
-
-  render() {    
-    const { myBool } = this;
-
-    return html`
-      <div>
-        ${myBool ? 'foo' : 'bar'}
-      </div>
-
-      <!-- or return some html -->
-      <div>
-        ${myBool 
-          ? html`<h1>foo</h1>`
-          : html`<h1>bar</h1>`
-        }
-      </div>
-    `;
-  }
-}
-
-customElements.define('conditional-demo', ConditionalDemo);
-
-```
-
-### Setting default values
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-default-values?file=default-values-demo.js)
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class DefaultValues extends LitElement {
-  static get properties() {
-    return {
-      book: Object
-    };
-  }
-
-  constructor() {
-    super();
-    this.book = { author: 'G.R.R. Martin', title: 'A Game of Thrones' };
-  }
-
-  render() {    
-    const { book } = this;
-
-    return html`
-       <h1>
-         ${book.author}
-       </h1>
-       <p>
-         ${book.title}
-       </p>
-    `;
-  }
-}
-
-customElements.define('default-values-demo', DefaultValues);
-```
-
-### Arrays
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-arrays?file=array-demo.js)
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class ArrayDemo extends LitElement {
-  static get properties() {
-    return {
-      myArr: Array
-    };
-  }
-
-  constructor() {
-    super();
-    this.myArr = [{ name: "foo" }, { name: "bar"}];
-  }
-
-  render() {
-    const { myArr } = this;
-    
-    return html`
-      <div>
-        ${myArr.map((item) => {
-            return html`<h1>${item.name}</h1>`;
-          })
-        }
-      </div>
-    `;
-  }
-}
-
-customElements.define('array-demo', ArrayDemo);
-```
-
-### Updating arrays and objects
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-updating-objects-arrays)
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class UpdatingDemo extends LitElement {
-  static get properties() {
-    return {
-      myArr: Array,
-      myObj: Object
-    };
-  }
-
-  constructor() {
-    super();
-    this.myObj = { id: 1, text: "foo" };
-    this.myArr = [{ id: 1 }, { id: 2}];
-  }
-
-  _updateArray() {
-    this.myArr = [...this.myArr, {id: 3}];
-  }
-
-  // Alternatively:
-  // _updateArray() {
-  //   this.myArr.push({id:3});
-  //   this.requestUpdate();
-  // }
-  
-
-  _updateObj() {
-    this.myObj = {...this.myObj, text: "bar"};
-  }
-
-  // Alternatively:
-  // _updateObj() {
-  //   this.myObj.text = "bar";
-  //   this.requestUpdate();
-  // }
-
-  render() {
-    const { myArr, myObj } = this;
-    
-    return html`
-      <div>
-        ${myArr.map((item) => {
-            return html`<h1>${item.id}</h1>`;
-          })
-        }
-        <button @click=${this._updateArray}>Update array</button>
-
-        <br><br>
-
-        <h1>${myObj.id}: ${myObj.text}</h1>
-        <button @click=${this._updateObj}>Update object</button>
-      </div>
-    `;
-  }
-}
-
-customElements.define('updating-demo', UpdatingDemo);
-```
-
-### Attributes
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-attributes?file=attributes-demo.js)
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-import { AppStyles } from './styles.js';
-
-class AttributesDemo extends LitElement {
-  static get properties() {
-    return {
-      color: String,
-      checked: Boolean
-    };
-  }
-    
-  constructor() {
-    super();
-    this.color = "red";
-    this.checked = true;
-  }
-
-  render() {  
-    const { color, checked } = this;
-
-    return html`
-      ${ AppStyles }
-
-      <!-- boolean values -->
-      <input type="checkbox" ?checked=${checked}>
-
-      <h1 class="${color}">
-        Hello universe!
-      </h1>
-    `;
-  }
-}
-
-customElements.define('attributes-demo', AttributesDemo);
-```
-
-### Reflecting props to attributes
-
-`my-app.js`:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class MyApp extends LitElement {
-  render() {
-    return html`
-        <style>
-          my-button {
-            color: green;
-          }
-          my-button[disabled] {
-            color: red;
-          }
-        </style>
-
-        <my-button disabled></my-button>
-        <my-button></my-button>
-
-    `; 
-  }
-}
-
-customElements.define('my-app', MyApp);
-```
-
-`my-button.js`:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class MyButton extends LitElement {
-  static get properties() {
-    return {
-      disabled: {
-        type: Boolean,
-        reflect: true
-      }
-    };
-  }
-
-  render() {    
-    const { disabled } = this;
-    return html`
-      <style>
-        .disabled {
-          cursor: not-allowed;
-        }
-        .enabled {
-          cursor: pointer;
-        }
-      </style>
-
-      <div class="${disabled ? 'disabled' : 'enabled'}">
-        ${disabled ? 'Click me!' : 'Dont click me!'}
-      </div>
-    `;
-  }
-}
-
-customElements.define('my-button', MyButton);
-```
-
-### Adding styles
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-styles?file=styles-demo.js)
-
-`styles-demo.js`:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-import { AppStyles } from './styles.js';
-
-class StylesDemo extends LitElement {
-  render() {    
-    return html`
-       ${AppStyles}
-       <h1 class="title">
-         Hello universe!
-       </h1>
-    `;
-  }
-}
-
-customElements.define('styles-demo', StylesDemo);
-```
-
-`styles.js`:
-
-```js
-import { html } from '@polymer/lit-element';
-
-export const AppStyles = html`
-  <style>
-    .title {
-      color: red;
-    }
-  </style>
-`;
-```
-
-Alternatively, you can write styles inside your component.
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class StylesDemo extends LitElement {
-  render() {    
-    return html`
-        <style>
-          .title {
-            color: red;
-          }
-        </style>
-        
-        <h1 class="title">
-          Hello universe!
-        </h1>
-    `;
-  }
-}
-
-customElements.define('styles-demo', StylesDemo);
-```
-
-
-### Querying dom
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-querying-dom?file=querying-dom-demo.js)
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class QueryingDomDemo extends LitElement {
-  firstUpdated() {
-    const title = this.shadowRoot.querySelector('h1').textContent;
-    console.log(title);
-  }
-  
-  render() {    
-    return html`
-        <h1>
-          Hello universe!
-        </h1>
-      `;
-  }
-}
-
-customElements.define('querying-dom-demo', QueryingDomDemo);
-```
-
-### Making api calls
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-making-api-calls?file=create-lit-app.js)
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class ApiDemo extends LitElement {
-  static get properties() {
-    return {
-      response: Array
-    }
-  }
-
-  constructor() {
-    super();
-    this.response = [];
-  }
-
-  firstUpdated() {
-    fetch('https://swapi.co/api/people/')
-      .then((r) => r.json())
-      .then((r) => {
-        this.response = r.results;
-      });
-  }
-
-  render() {
-    const { response } = this;
-    return html`
-        <ul>
-          ${response.map((item) => {
-              return html`<li>${item.name}</li>`;
-            })
-          }
-        </ul>
-      `;
-  }
-}
-
-customElements.define('api-demo', ApiDemo);
-```
-
-Alternatively you can use a [directive](#using-directives).
-
-### Using directives
-
-#### until directive
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-directives-until)
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-import { until } from 'lit-html/directives/until';
-
-class DirectivesDemo extends LitElement {
-  render() {    
-    return html`
-        <p>
-          ${until(
-              fetch('https://swapi.co/api/people/1')
-                .then((r) => r.json())
-                .then((r) => html`${r.name}`),
-              html`<span>Loading...</span>`)
-          }
-        </p>
-      `;
-  }
-}
-
-customElements.define('directives-demo', DirectivesDemo);
-```
-
-#### unsafeHTML directive
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-directives-unsafehtml?file=directives-demo.js)
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-
-const externalTemplate = "<h1>Hello universe!</h1>";
-
-class DirectivesDemo extends LitElement {
-  render() {    
-    return html`
-        <div>
-          <!-- wrong: -->
-          ${externalTemplate}
-
-          <!-- right: -->
-          ${unsafeHTML(externalTemplate)}
-        </div>
-      `;
-  }
-}
-
-customElements.define('directives-demo', DirectivesDemo);
-```
-
-#### classMap directive
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-directives-classmap?file=directives-demo.js)
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-import { classMap } from 'lit-html/directives/classMap';
-
-class DirectivesDemo extends LitElement {
-  static get properties() {
-    return {
-      someClass: Boolean
-    }
-  }
-
-  constructor() {
-    super();
-    this.someClass = true;
-  }
-
-  render() {    
-    const { someClass } = this;
-    return html`
-        <style>
-          .someClass {
-            color: red;
-          }
-        </style>
-        <div class="${classMap({someClass})}">
-          Hello universe!
-        </div>
-      `;
-  }
-}
-
-customElements.define('directives-demo', DirectivesDemo);
-```
-
-#### styleMap directive
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-directives-stylemap?file=directives-demo.js)
-
-```js
-
-import { LitElement, html } from '@polymer/lit-element/';
-import { styleMap } from 'lit-html/directives/styleMap';
-
-class DirectivesDemo extends LitElement {
-  static get properties() {
-    return {
-      bgColor: String
-    }
-  }
-
-  constructor() {
-    super();
-    this.bgColor = 'red';
-  }
-
-  render() {    
-    const { bgColor } = this;
-
-    const styles = {
-      backgroundColor: 'green',
-      color: 'blue'
-    }
-
-    return html`
-        <div style="${styleMap({backgroundColor: bgColor})}">
-          Foo
-        </div>
-        <div style="${styleMap(styles)}">
-          Bar
-        </div>
-      `;
-  }
-}
-
-customElements.define('directives-demo', DirectivesDemo);
-```
-
-### Installing components
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-installing-components?file=installing-demo.js)
-
-Run `npm i --save @material/mwc-button`
-
-Import and use:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-import '@material/mwc-button/';
-
-class InstallingDemo extends LitElement {
-  render() {    
-    return html`
-        <mwc-button>Click me!</mwc-button>
-    `;
-  }
-}
-
-customElements.define('installing-demo', InstallingDemo);
-```
-
-### Upwards data flow
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-upwards-data?file=add-book-component.js)
-
-`book-list.js`:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-import './add-book-component.js';
-
-class BookList extends LitElement {
-  static get properties() {
-    return {
-      books: Array
-    };
-  }
-
-  constructor() {
-    super();
-    this.books = [{ author: 'G.R.R. Martin', title: 'A Game of Thrones' }, { author: 'Tolkien', title: 'Lord of the Rings'}];
-  }
-
-  _addBook(event) {
-    this.books = [...this.books, event.detail];
-  }
-
-  render() {    
-    const { books } = this;
-
-    return html`
-      <div>
-        ${books.map((book) => {
-          return html`
-            <h1>${book.title}</h1>
-            <p>${book.author}</p>
-          `;
-        })}
-        <add-book-component @book-added=${(event) => this._addBook(event)}></add-book-component>
-      </div>
-    `;
-  }
-}
-
-customElements.define('book-list', BookList);
-```
-
-
-`add-book-component.js`:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class AddBookComponent extends LitElement {
-  _submitBook() {
-    const author = this.shadowRoot.querySelector('#author').value;
-    const title = this.shadowRoot.querySelector('#title').value;
-    this.dispatchEvent(new CustomEvent('book-added', { detail: { author, title } }));
-  }
-
-  render() {  
-    return html`
-      author: <input id="author"></input>
-      title: <input id="title"></input>
-      
-      <button @click=${this._submitBook}>
-        add a book!
-      </button>
-    `;
-  }
-}
-
-customElements.define('add-book-component', AddBookComponent);
-```
-
-### Slotted components
-
-#### Basic demo:
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-slotted?file=container-element.js)
-
-`container-element.js`:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-import './card-element.js';
-
-class ContainerEl extends LitElement {
-  render() {
-    return html`
-      <card-element>
-        <h1 slot="title">Hello universe</h1>
-        <p slot="details">This is some text</p>
-      </card-element>
-    `; 
-  }
-}
-
-customElements.define('container-el', ContainerEl);
-```
-
-
-`card-element.js`:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class CardElement extends LitElement {
-  render() {    
-    return html`
-      <div class="card-wrapper">
-        <slot name="title"></slot>
-        <slot name="details"></slot>
-      </div>
-    `;
-  }
-}
-
-customElements.define('card-element', CardElement);
-```
-
-#### You can also slot custom elements like so:
-
-`my-app.js`:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-import './card-element.js';
-import './book-item.js';
-
-class MyApp extends LitElement {
-  static get properties() {
-    return {
-      book: Object
-    };
-  }
-
-  constructor() {
-    super();
-    this.book = { author: 'Tolkien', title: 'Lord of the Rings' };
-  }
-
-  render() {
-    const { book } = this;
-    return html`
-      <card-element>
-        <book-item slot="book-details" .book=${book}></book-item>
-      </card-element>
-    `; 
-  }
-}
-
-customElements.define('my-app', MyApp);
-```
-
-`card-element.js`:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class CardElement extends LitElement {
-  render() {    
-    return html`
-      <div class="card-wrapper">
-        <slot name="book-details"></slot>
-      </div>
-    `;
-  }
-}
-
-customElements.define('card-element', CardElement);
-```
-
-`book-item.js`:
-
-```js
-class BookItem extends LitElement {
-  static get properties() {
-    return {
-      book: Object
-    };
-  }
-
-  render() {
-    const { book } = this;
-
-    return html`
-      <h1>${book.author}</h1>
-      <p>${book.title}</p>
-    `;
-  }
-}
-
-customElements.define('book-item', BookItem);
-```
-
-### Light dom
-
-[Try it on Stackblitz](https://stackblitz.com/edit/create-lit-app-light-dom)
-
-`light-dom.js`:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class LightDom extends LitElement {
-
-  createRenderRoot() {
-    return this;
-  }
-
-  render() {    
-    return html`
-        <div>
-          I am in the light DOM!
-        </div>
-      `;
-  }
-}
-
-customElements.define('light-dom', LightDom);
-```
-
-`shadow-dom.js`:
-
-```js
-import { LitElement, html } from '@polymer/lit-element/';
-
-class ShadowDom extends LitElement {
-  render() {    
-    return html`
-        <div>
-          I am in the shadow DOM!
-        </div>
-      `;
-  }
-}
-
-customElements.define('shadow-dom', ShadowDom);
-```
+- [Basic template](https://stackblitz.com/edit/create-lit-app-basic-template)
+- [Passing props](https://stackblitz.com/edit/create-lit-app-passing-props)
+- [Event handlers](https://stackblitz.com/edit/create-lit-app-event-handlers)
+- [Conditional rendering](https://stackblitz.com/edit/create-lit-app-conditional-rendering)
+- [Setting default values](https://stackblitz.com/edit/create-lit-app-default-values)
+- [Arrays](https://stackblitz.com/edit/create-lit-app-arrays)
+- [Updating arrays and objects](#updating-arrays-and-objects)
+- [Attributes](https://stackblitz.com/edit/create-lit-app-updating-objects-arrays)
+- [Reflecting props to attributes](https://stackblitz.com/edit/create-lit-app-reflect-to-attribute)
+- [Adding styles](https://stackblitz.com/edit/create-lit-app-styles)
+- [Querying dom](https://stackblitz.com/edit/create-lit-app-querying-dom)
+- [Making api calls](https://stackblitz.com/edit/create-lit-app-making-api-calls)
+- [Using directives](#using-directives)
+  - [until directive](https://stackblitz.com/edit/create-lit-app-directives-until)
+  - [unsafehtml directive](https://stackblitz.com/edit/create-lit-app-directives-unsafehtml)
+  - [classMap directive](https://stackblitz.com/edit/create-lit-app-directives-classmap)
+  - [styleMap directive](https://stackblitz.com/edit/create-lit-app-directives-stylemap)
+- [Installing components](https://stackblitz.com/edit/create-lit-app-installing-components)
+- [Upwards data flow](https://stackblitz.com/edit/create-lit-app-upwards-data)
+- [Slotted components](https://stackblitz.com/edit/create-lit-app-slotted)
+- [Light dom](https://stackblitz.com/edit/create-lit-app-light-dom)
+- [Typescript](https://stackblitz.com/edit/create-lit-app-typescript)
 
 ## Lifecycle
 
@@ -1210,7 +300,7 @@ import './lifecycle-demo.js';
 class myApp extends LitElement {
   static get properties() {
     return {
-      showElement: Boolean
+      showElement: { type: Boolean }
     };
   }
 
@@ -1248,7 +338,7 @@ import { LitElement, html } from '@polymer/lit-element/';
 class LifecycleDemo extends LitElement {
   static get properties() {
     return {
-      myArr: Array
+      myArr: { type: Array }
     };
   }
 
@@ -1424,7 +514,7 @@ There will be no complicated tools or install requirements — **to complete thi
 
       static get properties() { 
         return { 
-          mood: String 
+          mood: { type: String }
         }
       }
 
@@ -1517,8 +607,13 @@ LitElement reacts to changes in properties and rerenders your component if a val
 ```js
 static get properties() {
   return {
-    myBoolean: false
+    myBoolean: { type: Boolean }
   }
+}
+
+constructor() {
+  super();
+  this.myBoolean = false;
 }
 ```
 
@@ -1534,7 +629,7 @@ import { LitElement, html } from '@polymer/lit-element/';
 class UpdatingDemo extends LitElement {
   static get properties() {
     return {
-      myObj: Object
+      myObj: { type: Object }
     };
   }
 
@@ -1574,7 +669,7 @@ code:
 class DemoEl extends LitElement {
   static get properties() {
     return {
-      myString: String
+      myString: { type: String }
     };
   }
   constructor(){
@@ -1649,7 +744,7 @@ We'd love to have your helping hand on create-lit-app! Feel free to create a pul
 
 ## Credits
 
-### Credits & helpful links:
+### Helpful links:
 
 * [Awesome lit-html](https://github.com/web-padawan/awesome-lit-html)
 * [litHTML](https://github.com/Polymer/lit-html)
@@ -1657,13 +752,7 @@ We'd love to have your helping hand on create-lit-app! Feel free to create a pul
 * [Vaadin Router](https://github.com/vaadin/vaadin-router)
 * [Polymer3-webpack-starter](https://github.com/web-padawan/polymer3-webpack-starter)
 * [Polymer PWA starter kit](https://github.com/Polymer/pwa-starter-kit)
-* [Material components](https://github.com/material-components/material-components-web-components)
-
-## Further reading
 * [Redux](https://redux.js.org/introduction)
-* [Making a fullstack app with lit](https://medium.com/@pascalschilp/making-a-fullstack-crud-app-with-lithtml-redux-express-and-webpack-fe7e5cf8b3ef)
-* [Moving from Polymer to lit-html](https://43081j.com/2018/08/future-of-polymer)
-* [LitElement To Do app](https://medium.com/@westbrook/litelement-to-do-app-1e08a31707a4)
 
 ## Acknowledgements
 
