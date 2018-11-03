@@ -3,7 +3,7 @@ import { LitElement, html } from '@polymer/lit-element/';
 class HelloWorld extends LitElement {
 	static get properties() {
 		return {
-			greeting: String
+			greeting: { type: String }
 		};
 	}
 
