@@ -8,9 +8,9 @@
     "url": "https://github.com/"
   },
   "dependencies": {
-    "@polymer/lit-element": "^0.6.2",
-    "lit-html": "^0.12.0",
-    "@webcomponents/webcomponentsjs": "^2.0.2",
+    "@polymer/lit-element": "^0.6.4",
+    "lit-html": "^0.14.0",
+    "@webcomponents/webcomponentsjs": "^2.2.1",
     "express": "^4.16.3",
     "promise-polyfill": "^8.0.0",
     "whatwg-fetch": "^2.0.4"
