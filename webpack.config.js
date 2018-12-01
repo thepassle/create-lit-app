@@ -16,15 +16,7 @@ const webcomponentsjs = './node_modules/@webcomponents/webcomponentsjs';
 
 const assets = [
   {
-    from: resolve('./src/assets/favicon.ico'),
-    to: resolve('dist/assets/')
-  },
-  {
-    from: resolve('./src/assets/logo.svg'),
-    to: resolve('dist/assets/')
-  },
-  {
-    from: resolve('./src/assets/github.svg'),
+    from: resolve('./src/assets'),
     to: resolve('dist/assets/')
   }
 ];
